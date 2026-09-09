@@ -1,0 +1,140 @@
+---
+import Logo from './Logo.astro';
+import { SOCIOS, EMAIL_ESTUDIO } from '../lib/whatsapp';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <Logo variant="horizontal" theme="dark" />
+      <p>Abogados Paoletti y Palau</p>
+      <p class="site-footer__muted">Buenos Aires, Argentina</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>Contacto</h3>
+      <p><a href={`mailto:${EMAIL_ESTUDIO}`}>{EMAIL_ESTUDIO}</a></p>
+      <p><a href="https://instagram.com/estudioapp" target="_blank" rel="noopener noreferrer">@estudioapp</a></p>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>Gisele Paoletti</h3>
+      <p><a href={`mailto:${SOCIOS.gisele.email}`}>{SOCIOS.gisele.email}</a></p>
+      <p>{SOCIOS.gisele.numeroVisible}</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>Diego Palau</h3>
+      <p><a href={`mailto:${SOCIOS.diego.email}`}>{SOCIOS.diego.email}</a></p>
+      <p>{SOCIOS.diego.numeroVisible}</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>Mapa del sitio</h3>
+      <ul>
+        <li><a href="/el-estudio/">El estudio</a></li>
+        <li><a href="/equipo/">Equipo</a></li>
+        <li><a href="/empresas/">Empresas</a></li>
+        <li><a href="/personas/">Personas</a></li>
+        <li><a href="/propiedad-intelectual/">Propiedad Intelectual</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p class="site-footer__legal">
+      El envío de una consulta no implica aceptación del caso ni genera relación abogado-cliente
+      hasta su confirmación expresa por el estudio.
+    </p>
+    <p class="site-footer__copy">
+      <span>© {year} Estudio Jurídico APP</span>
+      <a href="#top">Volver arriba ↑</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--bg-dark);
+    color: var(--text-on-dark-muted);
+    padding-top: 3.5rem;
+  }
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(4, 1fr);
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(244, 239, 234, 0.12);
+  }
+  .site-footer__brand p {
+    margin: 0.9rem 0 0.15rem;
+    color: var(--color-cream);
+  }
+  .site-footer__muted {
+    color: var(--text-on-dark-muted) !important;
+  }
+  .site-footer h3 {
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.9rem;
+  }
+  .site-footer p {
+    margin: 0 0 0.4rem;
+    font-size: 0.92rem;
+  }
+  .site-footer a {
+    color: var(--color-cream);
+    text-decoration: none;
+  }
+  .site-footer a:hover {
+    color: var(--color-gold);
+  }
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .site-footer__legal {
+    max-width: 46ch;
+    font-size: 0.78rem;
+    color: var(--text-on-dark-muted);
+  }
+  .site-footer__copy {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .site-footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 560px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

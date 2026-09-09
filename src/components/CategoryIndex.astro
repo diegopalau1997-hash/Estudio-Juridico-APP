@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TEMAS_WHATSAPP } from '../lib/whatsapp';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  description: string;
+  path: string;
+  temaSlugs: string[];
+  nota?: string;
+}
+const { eyebrow, title, intro, description, path, temaSlugs, nota } = Astro.props;
+const temas = temaSlugs.map((slug) => TEMAS_WHATSAPP.find((t) => t.slug === slug)!).filter(Boolean);
+---
+
+<BaseLayout title={title} description={description} path={path}>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{title}</h1>
+      <p class="lead">{intro}</p>
+
+      <div class="cat-grid">
+        {temas.map((tema) => (
+          <a class="cat-card" href={`/${tema.slug}/`}>
+            <span class="cat-card__title">{tema.etiqueta}</span>
+            <p class="cat-card__resumen">{tema.resumenBreve}</p>
+            <span class="cat-card__cta">Ver más →</span>
+          </a>
+        ))}
+      </div>
+
+      {nota && <p class="cat-nota">{nota}</p>}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead {
+    max-width: 65ch;
+    margin-bottom: 2.5rem;
+  }
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem;
+    border: 1px solid var(--border-subtle);
+    text-decoration: none;
+    background: var(--bg-surface);
+  }
+  .cat-card:hover {
+    background: var(--color-cream);
+  }
+  .cat-card__title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-navy);
+  }
+  .cat-card__resumen {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+    flex-grow: 1;
+  }
+  .cat-card__cta {
+    font-size: 0.8rem;
+    color: var(--color-taupe);
+  }
+  .cat-nota {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+</style>

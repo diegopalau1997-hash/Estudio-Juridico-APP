@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WhatsAppPicker from '../../components/WhatsAppPicker.astro';
+
+const valores = ['Seriedad', 'Confianza', 'Conocimiento', 'Responsabilidad', 'Prolijidad', 'Eficiencia'];
+---
+
+<BaseLayout
+  title="El estudio"
+  description="Estudio Jurídico APP: asesoramiento y representación legal con precisión técnica, criterio estratégico y acompañamiento cercano."
+  path="/el-estudio/"
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">El estudio</span>
+      <h1>Precisión técnica, estrategia y seguimiento constante.</h1>
+      <p class="lead">
+        Estudio Jurídico APP es una firma fundada por profesionales que trabajan en conjunto
+        desde hace años, con una metodología basada en la precisión técnica, la estrategia y el
+        seguimiento constante de cada caso. Brindamos asesoramiento legal claro y responsable,
+        abordando procesos judiciales y procedimientos administrativos de diversa complejidad
+        con foco en la correcta ejecución de cada etapa.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--beige">
+    <div class="container mv-grid">
+      <div>
+        <h2>Misión</h2>
+        <p>
+          Brindar asesoramiento y representación legal con precisión técnica, criterio
+          estratégico y acompañamiento cercano, garantizando claridad en cada etapa de los
+          procesos judiciales y administrativos para que el cliente avance con seguridad y
+          tranquilidad.
+        </p>
+      </div>
+      <div>
+        <h2>Visión</h2>
+        <p>
+          Consolidarnos como un estudio jurídico referente por confiabilidad y solvencia
+          profesional, reconocido por convertir situaciones complejas en decisiones claras, y
+          por ofrecer un servicio legal moderno, ágil y responsable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Valores</h2>
+      <ul class="valores-list">
+        {valores.map((v) => <li>{v}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark cta">
+    <div class="container cta__grid">
+      <div>
+        <h2>¿Querés contarnos tu situación?</h2>
+        <p>Escribinos por WhatsApp y coordinamos una consulta.</p>
+      </div>
+      <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead {
+    font-size: 1.1rem;
+    max-width: 70ch;
+  }
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .mv-grid p {
+    color: var(--text-body);
+  }
+  .valores-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+  .valores-list li {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-navy);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-subtle);
+  }
+  .cta__grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 700px) {
+    .mv-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

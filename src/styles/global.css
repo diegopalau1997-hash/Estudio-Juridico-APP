@@ -1,0 +1,203 @@
+/*
+  Sistema visual — Estudio Jurídico APP
+  Fuente: 02_IDENTIDAD/MANUAL_MARCA_RESUMEN.md (paleta y tipografía tal como están en el
+  Manual de Marca oficial). No inventar colores ni tipografías fuera de este set.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;600;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Paleta oficial (Manual de Marca) */
+  --color-navy: #293849;      /* primario oscuro — títulos, logo, fondos oscuros */
+  --color-slate: #909BA5;     /* secundario — detalle/texto sobre azul o negro */
+  --color-taupe: #8B7B6C;     /* secundario — detalle, acompaña beige */
+  --color-beige: #D5CABC;     /* beige corporativo — fondos claros, logo sobre navy */
+  --color-gold: #C6A06D;      /* acento — pequeños detalles, nunca grandes superficies */
+  --color-cream: #F4EFEA;     /* blanco hueso — fondo claro principal (no blanco puro) */
+  --color-ink: #191918;       /* negro de marca — SOLO cuerpos de texto */
+
+  --bg-page: var(--color-cream);
+  --bg-surface: #ffffff;
+  --bg-dark: var(--color-navy);
+  --text-body: var(--color-ink);
+  --text-muted: var(--color-slate);
+  --text-on-dark: var(--color-cream);
+  --text-on-dark-muted: var(--color-slate);
+  --border-subtle: color-mix(in srgb, var(--color-navy) 14%, transparent);
+
+  --font-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --font-sans: 'Helvetica Now Display', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  --container-max: 1180px;
+  --space-section: clamp(3.5rem, 7vw, 7rem);
+  --radius-card: 2px;
+
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-gold) 70%, transparent);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  color: var(--color-navy);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.25rem, 4.5vw, 3.75rem); }
+h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+strong {
+  font-weight: 600;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section--dark {
+  background: var(--bg-dark);
+  color: var(--text-on-dark);
+}
+.section--dark h1, .section--dark h2, .section--dark h3 {
+  color: var(--color-cream);
+}
+.section--dark p {
+  color: var(--text-on-dark-muted);
+}
+
+.section--beige {
+  background: var(--color-beige);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.section--dark .eyebrow {
+  color: var(--color-gold);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-card);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn--whatsapp {
+  background: var(--color-navy);
+  color: var(--color-cream);
+}
+.btn--whatsapp:hover {
+  background: #1d2836;
+}
+
+.btn--outline-dark {
+  background: transparent;
+  border-color: var(--color-cream);
+  color: var(--color-cream);
+}
+.btn--outline-dark:hover {
+  background: rgba(244, 239, 234, 0.1);
+}
+
+.btn--outline-light {
+  background: transparent;
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+.btn--outline-light:hover {
+  background: rgba(41, 56, 73, 0.06);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--color-navy);
+  color: var(--color-cream);
+  padding: 0.75rem 1.25rem;
+  z-index: 200;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}

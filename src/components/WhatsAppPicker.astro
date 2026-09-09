@@ -1,0 +1,136 @@
+---
+import { SOCIOS, TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA, waLink } from '../lib/whatsapp';
+
+interface Props {
+  variant?: 'inline' | 'floating';
+  label?: string;
+}
+const { variant = 'inline', label = 'Consultar por WhatsApp' } = Astro.props;
+const todos = [...TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA];
+---
+
+<details class:list={['wa-picker', `wa-picker--${variant}`]}>
+  <summary class="btn btn--whatsapp wa-picker__trigger" aria-label={label}>
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.85.5 3.58 1.38 5.06L2 22l5.12-1.34A9.94 9.94 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.13c-1.6 0-3.1-.44-4.4-1.2l-.31-.19-3.04.8.81-2.96-.2-.31A8.1 8.1 0 0 1 3.9 12c0-4.5 3.66-8.16 8.14-8.16 4.48 0 8.14 3.66 8.14 8.16s-3.66 8.13-8.14 8.13Zm4.47-6.09c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-1.44-.72-2.38-1.28-3.33-2.9-.25-.44.25-.41.72-1.36.08-.16.04-.3-.04-.42-.08-.12-.55-1.33-.75-1.81-.2-.48-.4-.41-.55-.42-.14-.01-.31-.01-.47-.01-.16 0-.43.06-.65.3-.22.24-.86.84-.86 2.03 0 1.19.87 2.35 1 2.51.12.16 1.67 2.55 4.05 3.47 2 .78 2.4.63 2.83.59.43-.04 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.24-.16-.5-.28Z"/></svg>
+    <span class="wa-picker__label">{label}</span>
+  </summary>
+  <div class="wa-picker__panel" role="menu">
+    <p class="wa-picker__hint">Elegí el tema de tu consulta:</p>
+    <ul>
+      {TEMAS_WHATSAPP.map((tema) => (
+        <li>
+          <a href={waLink(tema.responsable, tema.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
+            <span>{tema.etiqueta}</span>
+            <span class="wa-picker__socio">{SOCIOS[tema.responsable].nombre.split(' ')[0]}</span>
+          </a>
+        </li>
+      ))}
+      <li class="wa-picker__fallback">
+        <a href={waLink(TEMA_OTRA_CONSULTA.responsable, TEMA_OTRA_CONSULTA.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
+          <span>{TEMA_OTRA_CONSULTA.etiqueta}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</details>
+
+<style>
+  .wa-picker {
+    position: relative;
+  }
+  .wa-picker__trigger {
+    list-style: none;
+  }
+  .wa-picker__trigger::-webkit-details-marker {
+    display: none;
+  }
+  .wa-picker__trigger {
+    user-select: none;
+  }
+  .wa-picker[open] .wa-picker__trigger {
+    background: #1d2836;
+  }
+  .wa-picker__panel {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    box-shadow: 0 12px 32px rgba(25, 25, 24, 0.16);
+    padding: 0.9rem;
+    width: min(320px, 90vw);
+    z-index: 60;
+  }
+  .wa-picker--floating .wa-picker__panel {
+    top: auto;
+    bottom: calc(100% + 0.75rem);
+    right: 0;
+  }
+  .wa-picker__hint {
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .wa-picker__panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .wa-picker__panel li + li {
+    border-top: 1px solid var(--border-subtle);
+  }
+  .wa-picker__fallback {
+    margin-top: 0.35rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .wa-picker__panel a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.6rem 0.35rem;
+    text-decoration: none;
+    color: var(--color-navy);
+    font-size: 0.9rem;
+    border-radius: 3px;
+  }
+  .wa-picker__panel a:hover,
+  .wa-picker__panel a:focus-visible {
+    background: var(--color-cream);
+  }
+  .wa-picker__socio {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .wa-picker--floating {
+    position: fixed;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    z-index: 90;
+  }
+  .wa-picker--floating .wa-picker__trigger {
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(25, 25, 24, 0.28);
+  }
+  .wa-picker--floating .wa-picker__trigger .wa-picker__label {
+    display: none;
+  }
+  @media (max-width: 640px) {
+    .wa-picker--floating {
+      right: 0.85rem;
+      bottom: 0.85rem;
+    }
+  }
+</style>

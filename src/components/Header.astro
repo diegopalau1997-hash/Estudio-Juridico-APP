@@ -1,0 +1,146 @@
+---
+import Logo from './Logo.astro';
+import WhatsAppPicker from './WhatsAppPicker.astro';
+
+const nav = [
+  { href: '/', label: 'Inicio' },
+  { href: '/el-estudio/', label: 'El estudio' },
+  { href: '/equipo/', label: 'Equipo' },
+  { href: '/empresas/', label: 'Empresas' },
+  { href: '/personas/', label: 'Personas' },
+  { href: '/propiedad-intelectual/', label: 'Propiedad Intelectual' },
+  { href: '/contacto/', label: 'Contacto' },
+];
+
+const currentPath = new URL(Astro.request.url).pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__logo" aria-label="Estudio Jurídico APP — inicio">
+      <Logo variant="horizontal" theme="light" />
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" />
+    <label for="nav-toggle" class="nav-toggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="site-nav" aria-label="Principal">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="site-nav__cta">
+        <WhatsAppPicker variant="inline" label="Consultar" />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    background: var(--bg-page);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.85rem;
+    gap: 1.5rem;
+  }
+  .site-header__logo {
+    text-decoration: none;
+  }
+  .nav-toggle-input {
+    display: none;
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.25rem;
+    height: 2.25rem;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: var(--color-navy);
+    border-radius: 1px;
+  }
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  .site-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .site-nav a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-navy);
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+  }
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
+    border-bottom-color: var(--color-gold);
+  }
+  .site-nav a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  @media (max-width: 900px) {
+    .nav-toggle {
+      display: flex;
+    }
+    .site-nav {
+      position: fixed;
+      inset: 4.4rem 0 0 0;
+      background: var(--bg-page);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.5rem;
+      gap: 1.5rem;
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      overflow-y: auto;
+    }
+    .site-nav ul {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+    .site-nav a {
+      display: block;
+      font-size: 1.1rem;
+      padding-block: 0.35rem;
+    }
+    .nav-toggle-input:checked ~ .site-nav {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+</style>

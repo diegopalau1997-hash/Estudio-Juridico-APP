@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import { SOCIOS } from '../../lib/whatsapp';
+---
+
+<BaseLayout
+  title="Equipo"
+  description="Gisele Paoletti y Diego Palau, socios de Estudio Jurídico APP."
+  path="/equipo/"
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Equipo</span>
+      <h1>Paoletti y Palau.</h1>
+      <p class="lead">
+        Estudio Jurídico APP está integrado por sus dos socios, que trabajan en conjunto en
+        cada asunto que llega al estudio.
+      </p>
+
+      <div class="equipo-grid">
+        <article class="equipo-card">
+          <div class="equipo-card__avatar" aria-hidden="true">GP</div>
+          <h2>{SOCIOS.gisele.nombre}</h2>
+          <p class="equipo-card__rol">Socia</p>
+          <ul class="equipo-card__contacto">
+            <li><a href={`mailto:${SOCIOS.gisele.email}`}>{SOCIOS.gisele.email}</a></li>
+            <li>{SOCIOS.gisele.numeroVisible}</li>
+          </ul>
+          <WhatsAppButton
+            responsable="gisele"
+            mensaje="Hola, quisiera hacer una consulta."
+            label="Escribir a Gisele"
+          />
+        </article>
+
+        <article class="equipo-card">
+          <div class="equipo-card__avatar" aria-hidden="true">DP</div>
+          <h2>{SOCIOS.diego.nombre}</h2>
+          <p class="equipo-card__rol">Socio</p>
+          <ul class="equipo-card__contacto">
+            <li><a href={`mailto:${SOCIOS.diego.email}`}>{SOCIOS.diego.email}</a></li>
+            <li>{SOCIOS.diego.numeroVisible}</li>
+          </ul>
+          <WhatsAppButton
+            responsable="diego"
+            mensaje="Hola, quisiera hacer una consulta."
+            label="Escribir a Diego"
+          />
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead {
+    max-width: 60ch;
+    margin-bottom: 2.5rem;
+  }
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .equipo-card {
+    border: 1px solid var(--border-subtle);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .equipo-card__avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .equipo-card h2 {
+    margin-bottom: 0.1rem;
+  }
+  .equipo-card__rol {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .equipo-card__contacto {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    font-size: 0.92rem;
+  }
+  .equipo-card__contacto a {
+    text-decoration: none;
+    color: var(--color-navy);
+  }
+  .equipo-card__contacto a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 700px) {
+    .equipo-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

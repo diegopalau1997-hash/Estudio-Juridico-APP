@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WhatsAppPicker from '../../components/WhatsAppPicker.astro';
+import { SOCIOS, EMAIL_ESTUDIO } from '../../lib/whatsapp';
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Contactate con Estudio Jurídico APP por WhatsApp o email."
+  path="/contacto/"
+>
+  <section class="section">
+    <div class="container contacto-grid">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h1>¿Necesitás asesoramiento?</h1>
+        <p class="lead">
+          Contanos brevemente tu situación y coordinamos una consulta. Elegí el tema para que
+          tu mensaje llegue directamente al socio que corresponde.
+        </p>
+        <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" />
+
+        <dl class="datos">
+          <div>
+            <dt>Ciudad</dt>
+            <dd>Buenos Aires, Argentina</dd>
+          </div>
+          <div>
+            <dt>Email general</dt>
+            <dd><a href={`mailto:${EMAIL_ESTUDIO}`}>{EMAIL_ESTUDIO}</a></dd>
+          </div>
+          <div>
+            <dt>Gisele Paoletti</dt>
+            <dd>
+              <a href={`mailto:${SOCIOS.gisele.email}`}>{SOCIOS.gisele.email}</a><br />
+              {SOCIOS.gisele.numeroVisible}
+            </dd>
+          </div>
+          <div>
+            <dt>Diego Palau</dt>
+            <dd>
+              <a href={`mailto:${SOCIOS.diego.email}`}>{SOCIOS.diego.email}</a><br />
+              {SOCIOS.diego.numeroVisible}
+            </dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd><a href="https://instagram.com/estudioapp" target="_blank" rel="noopener noreferrer">@estudioapp</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <aside class="aviso">
+        <h2>Aviso</h2>
+        <p>
+          El envío de una consulta no implica aceptación del caso ni genera relación
+          abogado-cliente hasta su confirmación expresa por el estudio.
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contacto-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .lead {
+    max-width: 55ch;
+  }
+  .datos {
+    margin: 2.5rem 0 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .datos dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-taupe);
+    margin-bottom: 0.2rem;
+  }
+  .datos dd {
+    margin: 0;
+    font-size: 0.98rem;
+  }
+  .datos a {
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+  .datos a:hover {
+    text-decoration: underline;
+  }
+  .aviso {
+    background: var(--color-beige);
+    padding: 1.75rem;
+    border-radius: 2px;
+  }
+  .aviso h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+  .aviso p {
+    font-size: 0.88rem;
+    margin: 0;
+  }
+  @media (max-width: 800px) {
+    .contacto-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

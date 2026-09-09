@@ -1,0 +1,409 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Logo from '../components/Logo.astro';
+import WhatsAppPicker from '../components/WhatsAppPicker.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { TEMAS_WHATSAPP, SOCIOS } from '../lib/whatsapp';
+
+const valores = ['Seriedad', 'Confianza', 'Conocimiento', 'Responsabilidad', 'Prolijidad', 'Eficiencia'];
+
+const destacada = TEMAS_WHATSAPP.find((t) => t.slug === 'derecho-administrativo-y-regulatorio')!;
+const areasGrid = TEMAS_WHATSAPP.filter((t) => t.slug !== destacada.slug);
+
+const metodologia = [
+  {
+    titulo: 'Escuchamos',
+    texto: 'Relevamos tu situación, la documentación disponible y lo que necesitás resolver, sin apuro y sin dar por sentado nada.',
+  },
+  {
+    titulo: 'Analizamos',
+    texto: 'Revisamos antecedentes, plazos y el estado real del asunto para entender qué alternativas existen antes de proponer un camino.',
+  },
+  {
+    titulo: 'Definimos',
+    texto: 'Te explicamos con claridad las opciones, los riesgos y los tiempos probables de cada una, para que decidas con criterio informado.',
+  },
+  {
+    titulo: 'Acompañamos',
+    texto: 'Seguimos cada etapa del proceso y mantenemos comunicación constante sobre novedades, sin dejarte esperando sin respuesta.',
+  },
+];
+---
+
+<BaseLayout
+  title="Estudio Jurídico APP — Abogados Paoletti y Palau"
+  description="Asesoramiento y representación legal con precisión técnica, estrategia y seguimiento constante. Jubilaciones, amparos de salud, propiedad intelectual, derecho administrativo y regulatorio, y más."
+  path="/"
+>
+  <!-- HERO -->
+  <section class="hero section--dark">
+    <div class="hero__eagle" aria-hidden="true">
+      <Logo variant="isotipo" theme="dark" />
+    </div>
+    <div class="container hero__content">
+      <span class="eyebrow">Estudio Jurídico APP</span>
+      <h1 class="hero__title">Precisión técnica,<br />estrategia<br />y acompañamiento.</h1>
+      <p class="hero__desc">
+        Asesoramiento y representación legal para procesos judiciales y procedimientos
+        administrativos, con seguimiento constante de cada caso.
+      </p>
+      <div class="hero__actions">
+        <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" />
+        <a class="btn btn--outline-dark" href="/el-estudio/">Conocer el estudio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- A. ATRIBUTOS -->
+  <section class="valores section--beige" aria-label="Nuestros valores">
+    <div class="container valores__row">
+      {valores.map((v) => (
+        <span class="valores__item">{v}</span>
+      ))}
+    </div>
+  </section>
+
+  <!-- B. INTRODUCCIÓN INSTITUCIONAL -->
+  <section class="section">
+    <div class="container intro__grid">
+      <div>
+        <span class="eyebrow">Sobre el estudio</span>
+        <h2>Una metodología basada en la precisión, la estrategia y el seguimiento.</h2>
+      </div>
+      <div class="intro__body">
+        <p>
+          Estudio Jurídico APP es una firma fundada por profesionales que trabajan en conjunto
+          desde hace años, con una metodología basada en la precisión técnica, la estrategia y
+          el seguimiento constante de cada caso.
+        </p>
+        <p>
+          Brindamos asesoramiento legal claro y responsable, para que cada cliente avance con
+          seguridad sobre lo que está pasando en su asunto y cuáles son los pasos siguientes.
+        </p>
+        <a class="btn btn--outline-light" href="/el-estudio/">Conocer el estudio →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- C. ÁREAS DE PRÁCTICA -->
+  <section class="section section--beige" id="areas">
+    <div class="container">
+      <span class="eyebrow">Áreas de práctica</span>
+      <h2>En qué podemos ayudarte.</h2>
+      <div class="areas-grid">
+        {areasGrid.map((tema) => (
+          <a class="area-card" href={`/${tema.slug}/`}>
+            <div>
+              <span class="area-card__title">{tema.etiqueta}</span>
+              <p class="area-card__resumen">{tema.resumenBreve}</p>
+            </div>
+            <span class="area-card__cta">Ver más →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- D. DERECHO ADMINISTRATIVO Y REGULATORIO — destacado -->
+  <section class="section destacada section--dark">
+    <div class="container destacada__grid">
+      <div>
+        <span class="eyebrow">Área destacada</span>
+        <h2>Derecho administrativo y regulatorio.</h2>
+        <p>
+          Trabajamos de forma habitual en procedimientos administrativos, trámites ante
+          organismos públicos y relaciones con el Estado Nacional, con foco en el conocimiento
+          técnico de cada procedimiento y en la correcta ejecución de cada etapa.
+        </p>
+      </div>
+      <div class="destacada__cta">
+        <WhatsAppButton
+          responsable={destacada.responsable}
+          mensaje={destacada.mensaje}
+          label="Consultar sobre este tema"
+          variant="outline-dark"
+        />
+        <a class="destacada__link" href={`/${destacada.slug}/`}>Ver la página completa →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- E. EQUIPO -->
+  <section class="section" id="equipo">
+    <div class="container">
+      <span class="eyebrow">Equipo</span>
+      <h2>Paoletti y Palau.</h2>
+      <div class="equipo-grid">
+        <article class="equipo-card">
+          <div class="equipo-card__avatar" aria-hidden="true">GP</div>
+          <h3>{SOCIOS.gisele.nombre}</h3>
+          <p class="equipo-card__rol">Socia</p>
+          <WhatsAppButton
+            responsable="gisele"
+            mensaje="Hola, quisiera hacer una consulta."
+            label="Escribir a Gisele"
+            variant="outline-light"
+          />
+        </article>
+        <article class="equipo-card">
+          <div class="equipo-card__avatar" aria-hidden="true">DP</div>
+          <h3>{SOCIOS.diego.nombre}</h3>
+          <p class="equipo-card__rol">Socio</p>
+          <WhatsAppButton
+            responsable="diego"
+            mensaje="Hola, quisiera hacer una consulta."
+            label="Escribir a Diego"
+            variant="outline-light"
+          />
+        </article>
+      </div>
+      <a class="btn btn--outline-light" href="/equipo/">Conocer al equipo →</a>
+    </div>
+  </section>
+
+  <!-- F. METODOLOGÍA -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Metodología</span>
+      <h2>Seguimiento constante de cada caso.</h2>
+      <div class="metodologia-grid">
+        {metodologia.map((paso) => (
+          <div class="metodologia-item">
+            <h3>{paso.titulo}</h3>
+            <p>{paso.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- G. CTA FINAL -->
+  <section class="section section--beige cta-final">
+    <div class="container cta-final__grid">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h2>¿Necesitás asesoramiento?</h2>
+        <p>Contanos brevemente tu situación y coordinamos una consulta.</p>
+      </div>
+      <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4rem, 12vh, 8rem);
+  }
+  .hero__eagle {
+    position: absolute;
+    right: -4%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(46vw, 620px);
+    opacity: 0.16;
+    pointer-events: none;
+  }
+  .hero__eagle :global(.logo__icon) {
+    width: 100%;
+    height: auto;
+  }
+  .hero__content {
+    position: relative;
+    max-width: 640px;
+  }
+  .hero__title {
+    margin-bottom: 1.1rem;
+  }
+  .hero__desc {
+    color: var(--text-on-dark-muted);
+    font-size: 1.05rem;
+    max-width: 46ch;
+  }
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+  }
+
+  .valores {
+    padding-block: 1.5rem;
+  }
+  .valores__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    justify-content: center;
+  }
+  .valores__item {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .intro__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .intro__body p {
+    color: var(--text-body);
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border-subtle);
+    margin-top: 2rem;
+  }
+  .area-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    min-height: 9.5rem;
+    border-right: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    text-decoration: none;
+    background: var(--color-cream);
+    transition: background-color 0.15s ease;
+  }
+  .area-card:hover {
+    background: #ffffff;
+  }
+  .area-card__title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-navy);
+    display: block;
+  }
+  .area-card__resumen {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0.4rem 0 0;
+  }
+  .area-card__cta {
+    font-size: 0.8rem;
+    color: var(--color-taupe);
+  }
+
+  .destacada__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .destacada__cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+  .destacada__link {
+    color: var(--color-cream);
+    font-size: 0.9rem;
+    text-decoration: underline;
+  }
+
+  .equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0 1.75rem;
+  }
+  .equipo-card {
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .equipo-card__avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: var(--color-cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 800;
+  }
+  .equipo-card h3 {
+    margin-bottom: 0;
+  }
+  .equipo-card__rol {
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .metodologia-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .metodologia-item {
+    border-top: 2px solid var(--color-gold);
+    padding-top: 1rem;
+  }
+  .metodologia-item h3 {
+    color: var(--color-cream);
+    font-size: 1.15rem;
+  }
+  .metodologia-item p {
+    color: var(--text-on-dark-muted);
+    font-size: 0.92rem;
+  }
+
+  .cta-final__grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cta-final__grid p {
+    color: var(--text-body);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .intro__grid,
+    .destacada__grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .equipo-grid {
+      grid-template-columns: 1fr;
+    }
+    .metodologia-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .hero__eagle {
+      opacity: 0.1;
+    }
+  }
+  @media (max-width: 560px) {
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+    .metodologia-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
