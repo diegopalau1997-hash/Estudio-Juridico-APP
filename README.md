@@ -84,12 +84,21 @@ solos a partir de esos tres datos en `src/layouts/BaseLayout.astro`.
 
 ## Analytics / Google Ads
 
-Todavía no está instalado ningún tracker (a propósito: no hay IDs de GA4/GTM/Ads reales
-todavía). Cuando el estudio tenga los IDs, se agregan en `BaseLayout.astro` dentro de un
-`<slot name="head">` o directamente en el `<head>`, condicionados a una variable de entorno
-(`PUBLIC_GA_ID`, etc.) para no commitear IDs de terceros al repo. Eventos a instrumentar cuando
-se agregue Analytics: `whatsapp_click` (ya se puede disparar desde los `<a href="wa.me/...">`),
-`email_click`, `area_click`, `contact_submit`.
+**Google Analytics 4 está instalado** (propiedad "Estudio Jurídico APP", cuenta de Google
+`diego.palau1997@gmail.com`, Measurement ID `G-M3RLVVCEPP` — constante `GA4_MEASUREMENT_ID` en
+`src/layouts/BaseLayout.astro`; no es información sensible, un Measurement ID de GA4 viaja
+público en el HTML de cualquier sitio, por eso está hardcodeado en vez de en una variable de
+entorno). Cada click en un enlace `wa.me/...` dispara el evento `consulta_enviada` con los
+parámetros `tema_consulta` y `responsable` (ver `public/analytics.js`); los componentes
+`WhatsAppButton`/`WhatsAppPicker` anotan cada enlace con `data-tema`/`data-responsable` para
+alimentarlo.
+
+**Google Ads todavía no tiene campañas activas.** Diego tiene una cuenta de Ads asociada a
+`diego.palau1997@gmail.com` pero, a la fecha, no decidió invertir — no crear ni activar
+campañas con presupuesto real sin su confirmación explícita en el momento. El siguiente paso
+natural cuando lo decida es importar `consulta_enviada` como conversión de Ads desde GA4
+(gratis, sin gasto) y recién ahí armar campañas con las URLs por tema que ya existen
+(`/jubilaciones/`, `/marcas/`, etc.) con UTMs.
 
 ## Publicar / deployment
 
