@@ -203,6 +203,7 @@ export const TEMA_OTRA_CONSULTA: TemaWhatsApp = {
   etiqueta: 'Otra consulta',
   responsable: RESPONSABLE_GENERAL,
   mensaje: 'Hola, quisiera hacer una consulta con Estudio Jurídico APP.',
+  resumenBreve: 'Para cualquier otra consulta que no encuentres en la lista.',
 };
 
 /** Construye el link wa.me para un socio + mensaje dado. */
