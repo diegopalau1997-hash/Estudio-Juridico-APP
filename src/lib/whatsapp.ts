@@ -31,7 +31,7 @@ export const SOCIOS: Record<Responsable, Socio> = {
     email: 'giselepaoletti@gmail.com',
     rol: 'Socia',
     formacion: ['Abogada (UBA)', 'Magíster en Administración y Políticas Públicas (UDESA)'],
-    // TODO: matrícula (tomo y folio) de Gisele — falta el dato, no inventar. Ver [slug]/whatsapp.ts.
+    matricula: 'Tº 121 Fº 345 C.P.A.C.F.',
     bio: [
       'Aporta una visión integral, técnica y sensible que se adapta a cada contexto, con experiencia en asesoramiento jurídico y gestión pública, acompañando procesos vinculados a decisiones patrimoniales, derechos y relaciones de consumo.',
       'Trabaja también en jubilaciones y pensiones, y en el seguimiento de trámites administrativos y judiciales, con una mirada atenta al recorrido de cada persona y organización.',
@@ -113,6 +113,54 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'un trámite de jubilación',
     resumenBreve: 'Asesoramiento y representación en trámites y reclamos previsionales.',
     keywords: ['jubilación', 'jubilaciones', 'pami', 'anses', 'aportes', 'retiro', 'pensión', 'moratoria previsional', 'beneficio previsional', 'reajuste de haberes'],
+    contenido: {
+      problema:
+        'Llegar a la jubilación, o descubrir que el beneficio otorgado no refleja los aportes reales, son situaciones que conviene resolver con asesoramiento previsional específico — tanto para iniciar el trámite como para cuestionar lo ya otorgado.',
+      situaciones: [
+        'Personas en edad de jubilarse que no completan los años de aporte exigidos (moratoria previsional / prestación por edad avanzada).',
+        'Jubilados que consideran que su haber fue mal calculado o quedó desactualizado (reajuste de haberes).',
+        'Necesidad de mantener la cobertura de una prepaga u obra social al pasar a PAMI.',
+        'Trámites de pensión por fallecimiento del cónyuge o familiar aportante.',
+        'Reclamos ante ANSES por demoras o rechazos en el trámite.',
+      ],
+      servicios: [
+        'Análisis de la situación previsional y de los años de aporte disponibles.',
+        'Asesoramiento y gestión de moratorias previsionales cuando corresponda.',
+        'Representación en reclamos y reajustes de haberes ante ANSES y la Justicia.',
+        'Asesoramiento sobre la continuidad de la cobertura médica (prepaga u obra social) al jubilarse.',
+        'Trámites de pensión por fallecimiento.',
+      ],
+      comoTrabaja: [
+        'Relevamos la historia laboral y los años de aportes registrados en ANSES.',
+        'Evaluamos qué vía corresponde: jubilación ordinaria, moratoria, pensión, o reajuste de un beneficio ya otorgado.',
+        'Iniciamos o seguimos el trámite ante ANSES, o el reclamo judicial si la vía administrativa no da respuesta.',
+        'Te acompañamos hasta la resolución del beneficio o el reclamo.',
+      ],
+      documentacionInicial: [
+        'DNI.',
+        'Historia laboral (se puede solicitar en ANSES) o recibos de sueldo/aportes disponibles.',
+        'Última resolución de ANSES, si ya hay un trámite en curso o un beneficio otorgado que se quiere cuestionar.',
+        'Carnet de afiliación a PAMI o a la prepaga/obra social actual, si la consulta es sobre cobertura médica.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Puedo jubilarme si no llegué a los años de aportes exigidos?',
+          respuesta:
+            'Sí, existen moratorias previsionales para completar los años faltantes; te asesoramos si tu caso puede acceder a alguna de ellas.',
+        },
+        {
+          pregunta: '¿Puedo mantener mi prepaga en lugar de pasar a PAMI cuando me jubilo?',
+          respuesta:
+            'En determinados casos es posible mantener la cobertura de la prepaga u obra social al jubilarte; depende de tu situación particular y de la entidad. Te asesoramos sobre las opciones concretas.',
+        },
+        {
+          pregunta: '¿Qué es un reajuste de haberes?',
+          respuesta:
+            'Es el reclamo para actualizar o corregir un beneficio ya otorgado, cuando el cálculo no refleja correctamente los aportes realizados.',
+        },
+      ],
+      relacionados: ['amparos-de-salud', 'danos-y-perjuicios', 'derecho-administrativo-y-regulatorio'],
+    },
   },
   {
     slug: 'amparos-de-salud',
@@ -121,6 +169,51 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'un amparo de salud',
     resumenBreve: 'Acciones de amparo ante situaciones que requieren tutela judicial urgente en salud.',
     keywords: ['amparo de salud', 'obra social', 'prepaga', 'medicamento', 'tratamiento médico', 'cobertura médica', 'discapacidad', 'urgencia médica'],
+    contenido: {
+      problema:
+        'Cuando una obra social o prepaga niega o demora un tratamiento, una cirugía o la provisión de un medicamento, la vía judicial de amparo puede ser la manera de garantizar en tiempo útil un derecho a la salud que no admite demoras.',
+      situaciones: [
+        'Negativa o demora de una prepaga u obra social en cubrir un tratamiento, medicamento o prestación.',
+        'Discapacidad: negativa a cubrir prestaciones previstas por la normativa vigente.',
+        'Urgencias médicas donde la demora administrativa pone en riesgo la salud del paciente.',
+        'Rechazo de una cirugía, estudio o internación ya indicada por el médico tratante.',
+      ],
+      servicios: [
+        'Evaluación de la negativa y del marco normativo aplicable (normativa de discapacidad, de obras sociales, PMO).',
+        'Redacción y presentación de la acción de amparo.',
+        'Solicitud de medidas cautelares para lograr la cobertura mientras dura el proceso.',
+        'Seguimiento hasta el cumplimiento efectivo de la prestación.',
+      ],
+      comoTrabaja: [
+        'Relevamos la negativa recibida y la indicación médica correspondiente.',
+        'Analizamos si corresponde un amparo y, de ser así, si hay lugar a solicitar una medida cautelar urgente.',
+        'Presentamos la acción judicial y solicitamos la cautelar.',
+        'Seguimos el cumplimiento de la orden judicial hasta que la prestación se efectiviza.',
+      ],
+      documentacionInicial: [
+        'DNI y carnet de la prepaga u obra social.',
+        'Indicación médica del tratamiento, medicamento o prestación solicitada.',
+        'Nota o comunicación formal de rechazo de la prepaga/obra social, si la dieron por escrito.',
+        'Historia clínica o informes médicos relevantes.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Cuánto tarda un amparo de salud?',
+          respuesta:
+            'Al tratarse de un derecho urgente, suelen solicitarse medidas cautelares que pueden resolverse en pocos días, aunque el proceso completo demora más — te damos una estimación según tu situación concreta.',
+        },
+        {
+          pregunta: '¿Necesito que el rechazo sea por escrito?',
+          respuesta:
+            'No es imprescindible, pero ayuda. Si solo te lo comunicaron verbalmente, te asesoramos sobre cómo dejar constancia de la negativa antes de iniciar la acción.',
+        },
+        {
+          pregunta: '¿El amparo cubre medicamentos de alto costo?',
+          respuesta: 'Puede aplicar cuando la cobertura correspondiente no se cumple. Contanos qué te negaron para evaluar el caso.',
+        },
+      ],
+      relacionados: ['jubilaciones', 'danos-y-perjuicios', 'derecho-administrativo-y-regulatorio'],
+    },
   },
   {
     slug: 'accidentes-de-trabajo',
@@ -184,6 +277,49 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     resumenBreve: 'Asesoramiento legal ante accidentes de tránsito y sus consecuencias.',
     keywords: ['accidente de tránsito', 'choque', 'siniestro vial', 'seguro automotor', 'lesiones', 'accidente de auto', 'accidente de moto'],
     responsablePendiente: true,
+    contenido: {
+      problema:
+        'Un accidente de tránsito puede dejar secuelas físicas, daños materiales y gastos que no siempre son reconocidos espontáneamente por el seguro o la contraparte — reclamar lo que corresponde requiere ordenar la prueba desde el primer momento.',
+      situaciones: [
+        'Choques o siniestros viales con lesiones a las personas involucradas.',
+        'Daños materiales al vehículo no reconocidos, o reconocidos parcialmente, por la aseguradora.',
+        'Desacuerdos con la aseguradora propia o de la contraparte sobre la cobertura o el monto ofrecido.',
+        'Necesidad de reclamar a un tercero responsable del accidente.',
+      ],
+      servicios: [
+        'Asesoramiento sobre la vía más conveniente: reclamo administrativo ante la aseguradora o acción judicial.',
+        'Representación en el reclamo por daños materiales y por lesiones.',
+        'Seguimiento de la denuncia policial y de la actuación de los seguros involucrados.',
+        'Evaluación del monto del reclamo según el daño acreditado.',
+      ],
+      comoTrabaja: [
+        'Relevamos cómo ocurrió el accidente y la documentación disponible (denuncia, fotos, testigos, partes de seguro).',
+        'Analizamos la cobertura de los seguros involucrados y la responsabilidad de cada parte.',
+        'Iniciamos el reclamo correspondiente, administrativo o judicial según el caso.',
+        'Seguimos el proceso hasta su resolución.',
+      ],
+      documentacionInicial: [
+        'Denuncia policial o exposición del accidente, si se hizo.',
+        'Datos del otro vehículo/conductor y de las aseguradoras involucradas.',
+        'Informes o certificados médicos, si hubo lesiones.',
+        'Presupuestos o facturas de reparación del vehículo, si corresponde.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Puedo reclamar si el accidente fue hace varios meses?',
+          respuesta: 'Depende del caso: existen plazos legales para reclamar. Contanos cuándo ocurrió para evaluar si tu reclamo sigue vigente.',
+        },
+        {
+          pregunta: '¿Qué pasa si la aseguradora ofrece un monto que me parece bajo?',
+          respuesta: 'No estás obligado a aceptarlo. Podemos evaluar tu caso y asesorarte sobre si conviene negociar o iniciar una acción judicial.',
+        },
+        {
+          pregunta: '¿Puedo reclamar aunque no haya hecho la denuncia policial en el momento?',
+          respuesta: 'Puede ser más difícil probar el hecho, pero no necesariamente imposible. Contanos con qué documentación contás.',
+        },
+      ],
+      relacionados: ['danos-y-perjuicios', 'accidentes-de-trabajo', 'amparos-de-salud'],
+    },
   },
   {
     slug: 'divorcios',
@@ -245,6 +381,50 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'un trámite de ciudadanía',
     resumenBreve: 'Asistencia en procesos y trámites vinculados con ciudadanía y migración.',
     keywords: ['ciudadanía', 'ciudadanía italiana', 'ciudadanía española', 'migraciones', 'radicación', 'residencia', 'naturalización', 'pasaporte'],
+    contenido: {
+      problema:
+        'Los trámites de ciudadanía por opción o naturalización y los procesos migratorios tienen requisitos y tiempos específicos según el país y la vía elegida, que conviene conocer antes de empezar para evitar demoras evitables.',
+      situaciones: [
+        'Descendientes de italianos, españoles u otras nacionalidades que quieren tramitar la ciudadanía por vía consular o judicial.',
+        'Personas que necesitan resolver su situación migratoria en Argentina (radicación, residencia).',
+        'Extranjeros que buscan la naturalización argentina.',
+        'Armado o corrección de la documentación y partidas necesarias para un trámite de ciudadanía.',
+      ],
+      servicios: [
+        'Asesoramiento sobre la vía más conveniente según el caso (consular, judicial, administrativa).',
+        'Relevamiento y ordenamiento de la documentación y partidas necesarias.',
+        'Gestión y seguimiento del trámite ante el organismo o consulado correspondiente.',
+        'Asesoramiento en trámites de radicación y residencia en Argentina.',
+      ],
+      comoTrabaja: [
+        'Relevamos tu árbol genealógico o situación migratoria y la documentación disponible.',
+        'Identificamos qué partidas o documentos faltan y cómo obtenerlos.',
+        'Iniciamos y hacemos seguimiento del trámite ante el organismo correspondiente.',
+        'Te mantenemos informado de cada novedad hasta la resolución.',
+      ],
+      documentacionInicial: [
+        'DNI y partidas de nacimiento propias y de los ascendientes vinculados al trámite.',
+        'Actas de matrimonio de los ascendientes, si corresponde.',
+        'Documentación del país de origen del ascendiente (partida de nacimiento extranjera, si la hay).',
+        'Pasaporte o documentación migratoria vigente, si el trámite es de radicación.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Cuánto tarda un trámite de ciudadanía italiana?',
+          respuesta:
+            'Varía mucho según la vía (consular o judicial) y, en el caso consular, según la comuna italiana involucrada — puede ir de meses a varios años. Te damos una estimación más precisa según tu caso.',
+        },
+        {
+          pregunta: '¿Necesito viajar para tramitar la ciudadanía?',
+          respuesta: 'Depende de la vía elegida. Hay alternativas que se pueden avanzar desde Argentina; te asesoramos sobre la que mejor se adapte a tu situación.',
+        },
+        {
+          pregunta: 'No tengo todas las partidas de mis ascendientes, ¿puedo iniciar igual?',
+          respuesta: 'Sí. Identificar y conseguir la documentación faltante es parte del trabajo inicial.',
+        },
+      ],
+      relacionados: ['derecho-administrativo-y-regulatorio', 'sucesiones'],
+    },
   },
   {
     slug: 'sucesiones',
@@ -313,6 +493,49 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'el registro de una marca',
     resumenBreve: 'Asesoramiento en protección y gestión de activos marcarios.',
     keywords: ['marca', 'registro de marca', 'inpi', 'propiedad industrial', 'nombre comercial', 'logo'],
+    contenido: {
+      problema:
+        'Registrar una marca es la manera de asegurar que un nombre, logo o signo distintivo no pueda ser usado por otro y de defenderlo frente a terceros — sin registro, la protección legal es mucho más débil.',
+      situaciones: [
+        'Emprendimientos o empresas que lanzan un nombre, logo o signo distintivo y quieren protegerlo.',
+        'Marcas ya registradas que enfrentan una oposición de un tercero, o que necesitan oponerse a la de otro.',
+        'Renovación de marcas próximas a vencer.',
+        'Uso no autorizado de una marca por parte de un tercero.',
+      ],
+      servicios: [
+        'Búsqueda de antecedentes y viabilidad registral de la marca.',
+        'Presentación y seguimiento de la solicitud de registro ante el INPI.',
+        'Gestión de oposiciones, propias o de terceros.',
+        'Renovación de marcas y asesoramiento ante usos no autorizados.',
+      ],
+      comoTrabaja: [
+        'Analizamos la marca a registrar y hacemos una búsqueda de antecedentes.',
+        'Presentamos la solicitud ante el INPI y hacemos seguimiento del expediente.',
+        'Te informamos de cada novedad (observaciones, oposiciones) y actuamos frente a ellas.',
+        'Acompañamos hasta la concesión del registro.',
+      ],
+      documentacionInicial: [
+        'Datos del titular (persona física o jurídica) que va a registrar la marca.',
+        'El signo a registrar: palabra, logo, o ambos.',
+        'Detalle de los productos o servicios que la marca va a identificar.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Cuánto dura el registro de una marca?',
+          respuesta: 'Una vez concedida, el registro dura diez años y es renovable indefinidamente por períodos iguales.',
+        },
+        {
+          pregunta: '¿Qué pasa si no registro mi marca?',
+          respuesta:
+            'Podés seguir usándola, pero tu protección legal frente a terceros es mucho más débil, y corrés el riesgo de que otro la registre antes.',
+        },
+        {
+          pregunta: '¿Cuánto tarda el trámite?',
+          respuesta: 'Depende del INPI y de si hay observaciones u oposiciones en el camino — te damos una estimación al iniciar el trámite.',
+        },
+      ],
+      relacionados: ['patentes', 'derecho-de-autor', 'asesoramiento-a-empresas'],
+    },
   },
   {
     slug: 'patentes',
@@ -321,6 +544,49 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'una patente',
     resumenBreve: 'Orientación jurídica para la protección de invenciones.',
     keywords: ['patente', 'invento', 'invención', 'modelo de utilidad', 'propiedad industrial', 'inpi'],
+    contenido: {
+      problema:
+        'Una invención sin protección puede ser reproducida libremente por terceros — patentar, o proteger como modelo de utilidad, es lo que permite explotar en exclusiva un desarrollo técnico.',
+      situaciones: [
+        'Inventores o empresas con un desarrollo técnico nuevo que quieren protegerlo antes de darlo a conocer.',
+        'Dudas sobre si un desarrollo es patentable o corresponde a un modelo de utilidad.',
+        'Necesidad de evaluar si una invención ya fue patentada por otro.',
+        'Explotación o licenciamiento de una patente ya concedida.',
+      ],
+      servicios: [
+        'Evaluación de la patentabilidad del desarrollo y búsqueda de antecedentes.',
+        'Redacción y presentación de la solicitud de patente o modelo de utilidad ante el INPI.',
+        'Seguimiento del expediente durante el examen.',
+        'Asesoramiento sobre licenciamiento o cesión de derechos.',
+      ],
+      comoTrabaja: [
+        'Relevamos el desarrollo técnico y evaluamos la vía de protección más adecuada.',
+        'Hacemos una búsqueda de antecedentes para evaluar la novedad.',
+        'Preparamos y presentamos la solicitud ante el INPI.',
+        'Seguimos el expediente hasta su resolución, informando cada etapa del examen.',
+      ],
+      documentacionInicial: [
+        'Descripción técnica del desarrollo o invención.',
+        'Planos, esquemas o prototipos, si existen.',
+        'Información sobre si el desarrollo ya fue divulgado públicamente (publicaciones, ferias, ventas).',
+      ],
+      faq: [
+        {
+          pregunta: '¿Cuál es la diferencia entre una patente y un modelo de utilidad?',
+          respuesta:
+            'La patente protege invenciones con mayor grado de novedad e implica un proceso de examen más extenso; el modelo de utilidad protege mejoras o disposiciones de objetos existentes, con un trámite más simple y una vigencia menor. Te asesoramos sobre cuál corresponde a tu caso.',
+        },
+        {
+          pregunta: '¿Puedo patentar algo que ya mostré públicamente?',
+          respuesta: 'Depende de cuándo y cómo se divulgó — la novedad es un requisito clave. Contanos los detalles para evaluarlo cuanto antes.',
+        },
+        {
+          pregunta: '¿Cuánto tarda el trámite?',
+          respuesta: 'El examen de patentes ante el INPI suele demorar varios años; te damos una estimación más ajustada según el tipo de solicitud.',
+        },
+      ],
+      relacionados: ['marcas', 'derecho-de-autor', 'asesoramiento-a-empresas'],
+    },
   },
   {
     slug: 'derecho-de-autor',
@@ -329,6 +595,49 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'derecho de autor',
     resumenBreve: 'Orientación jurídica para la protección de creaciones y derechos intelectuales.',
     keywords: ['derecho de autor', 'propiedad intelectual', 'obra', 'copyright', 'registro de obra'],
+    contenido: {
+      problema:
+        'Una obra literaria, artística, de software o de otro tipo está protegida por derecho de autor desde su creación, pero registrarla facilita probar la autoría y la fecha de creación frente a un uso no autorizado.',
+      situaciones: [
+        'Autores, artistas o desarrolladores que quieren registrar formalmente una obra.',
+        'Uso no autorizado de una obra por parte de un tercero.',
+        'Dudas sobre titularidad de derechos en obras creadas por encargo o en el marco de una relación laboral.',
+        'Cesión o licenciamiento de derechos de autor sobre una obra.',
+      ],
+      servicios: [
+        'Registro de obras ante la Dirección Nacional del Derecho de Autor.',
+        'Asesoramiento frente a usos no autorizados de una obra.',
+        'Redacción de contratos de cesión o licencia de derechos de autor.',
+        'Asesoramiento sobre titularidad de derechos en obras por encargo.',
+      ],
+      comoTrabaja: [
+        'Relevamos la obra y su situación de autoría/titularidad.',
+        'Gestionamos el registro correspondiente cuando corresponde.',
+        'Si hay un uso no autorizado, evaluamos la vía de reclamo más adecuada.',
+        'Acompañamos hasta resolver la situación.',
+      ],
+      documentacionInicial: [
+        'La obra (o una copia/soporte que la identifique) que se quiere registrar o proteger.',
+        'Datos del autor o autores.',
+        'En caso de reclamo, evidencia del uso no autorizado por parte del tercero.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Necesito registrar mi obra para que esté protegida?',
+          respuesta:
+            'No, la protección nace con la creación de la obra. El registro es una herramienta que facilita probar la autoría y la fecha frente a un conflicto.',
+        },
+        {
+          pregunta: '¿Quién es el titular de una obra hecha por encargo?',
+          respuesta: 'Depende de lo acordado entre las partes. Te asesoramos para dejarlo claro por escrito antes de que surja un conflicto.',
+        },
+        {
+          pregunta: '¿Qué puedo hacer si alguien usa mi obra sin autorización?',
+          respuesta: 'Podés reclamar el cese del uso y, según el caso, una compensación. Contanos los detalles para evaluar la mejor vía.',
+        },
+      ],
+      relacionados: ['marcas', 'patentes', 'asesoramiento-a-empresas'],
+    },
   },
   {
     slug: 'derecho-administrativo-y-regulatorio',
@@ -445,6 +754,48 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'la redacción de un contrato',
     resumenBreve: 'Redacción y revisión de contratos a medida de cada proyecto o actividad.',
     keywords: ['contrato', 'redacción de contrato', 'revisión de contrato', 'acuerdo comercial'],
+    contenido: {
+      problema:
+        'Un contrato mal redactado, o directamente inexistente, suele ser el origen de conflictos que podrían evitarse dejando por escrito, desde el inicio, lo que cada parte espera y qué pasa si algo no se cumple.',
+      situaciones: [
+        'Acuerdos comerciales o de prestación de servicios que todavía no están puestos por escrito.',
+        'Contratos ya firmados que generan dudas sobre su interpretación o alcance.',
+        'Necesidad de revisar un contrato antes de firmarlo.',
+        'Relaciones comerciales informales que buscan formalizarse.',
+      ],
+      servicios: [
+        'Redacción de contratos a medida (locación de servicios, compraventa, confidencialidad, entre otros).',
+        'Revisión de contratos ya redactados por la otra parte antes de la firma.',
+        'Asesoramiento sobre las cláusulas críticas de cada tipo de acuerdo.',
+        'Renegociación o modificación de contratos vigentes.',
+      ],
+      comoTrabaja: [
+        'Relevamos el acuerdo que se quiere formalizar o el contrato que se quiere revisar.',
+        'Identificamos los puntos críticos a definir o corregir.',
+        'Redactamos o ajustamos el contrato con las cláusulas necesarias para cada caso.',
+        'Acompañamos la negociación con la otra parte hasta la firma.',
+      ],
+      documentacionInicial: [
+        'Datos de las partes involucradas en el acuerdo.',
+        'Términos ya conversados o acordados de palabra, si los hay.',
+        'El contrato existente, si lo que se pide es una revisión.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Pueden revisar un contrato que ya me mandó la otra parte?',
+          respuesta: 'Sí, es una de las consultas más frecuentes. Te señalamos los puntos que convendría modificar antes de firmar.',
+        },
+        {
+          pregunta: '¿Qué pasa si ya firmé un contrato y ahora tengo dudas?',
+          respuesta: 'Podemos analizarlo igual y asesorarte sobre cómo interpretarlo o, si corresponde, cómo renegociarlo.',
+        },
+        {
+          pregunta: '¿Cuánto tarda la redacción de un contrato?',
+          respuesta: 'Depende de la complejidad del acuerdo; en la primera consulta te damos un estimado de tiempos.',
+        },
+      ],
+      relacionados: ['constitucion-de-sociedades', 'formalizacion-de-proyectos', 'asesoramiento-a-empresas'],
+    },
   },
   {
     slug: 'formalizacion-de-proyectos',
@@ -453,6 +804,48 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'la formalización de un proyecto',
     resumenBreve: 'Estructuración legal de proyectos y emprendimientos desde su inicio.',
     keywords: ['formalizar un proyecto', 'emprendimiento', 'startup', 'proyecto'],
+    contenido: {
+      problema:
+        'Muchos proyectos y emprendimientos operan durante un tiempo de manera informal — darles un marco legal desde el inicio, o al momento de crecer, ordena la relación entre quienes participan y reduce riesgos a futuro.',
+      situaciones: [
+        'Emprendimientos que empiezan a operar y necesitan definir su estructura legal.',
+        'Proyectos con más de una persona involucrada que todavía no formalizaron su relación.',
+        'Necesidad de elegir entre distintas figuras legales según la actividad y el riesgo.',
+        'Proyectos informales que buscan regularizar su situación ante organismos públicos.',
+      ],
+      servicios: [
+        'Asesoramiento sobre la figura legal más adecuada para el proyecto (sociedad, contrato entre partes, u otra estructura).',
+        'Definición de las reglas entre las personas involucradas en el proyecto.',
+        'Acompañamiento en la regularización de proyectos que ya vienen operando de manera informal.',
+        'Coordinación con la constitución de sociedades cuando esa es la vía elegida.',
+      ],
+      comoTrabaja: [
+        'Relevamos el proyecto, quiénes participan y en qué etapa está.',
+        'Evaluamos qué estructura legal se ajusta mejor a la actividad y a los objetivos de cada uno.',
+        'Formalizamos la relación mediante el instrumento legal que corresponda.',
+        'Acompañamos la puesta en marcha formal del proyecto.',
+      ],
+      documentacionInicial: [
+        'Descripción de la actividad y de quiénes participan en el proyecto.',
+        'Acuerdos ya conversados entre las partes, aunque no estén formalizados.',
+        'Documentación existente del proyecto, si ya viene operando de manera informal.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Mi proyecto necesita una sociedad o alcanza con un contrato entre las partes?',
+          respuesta: 'Depende de la actividad, el riesgo y los objetivos de cada uno. Te asesoramos sobre la opción más adecuada para tu caso.',
+        },
+        {
+          pregunta: '¿Puedo formalizar un proyecto que ya viene funcionando hace tiempo?',
+          respuesta: 'Sí. Es habitual que la formalización llegue después de que el proyecto ya está en marcha.',
+        },
+        {
+          pregunta: '¿Qué pasa si más adelante queremos cambiar la estructura elegida?',
+          respuesta: 'Es posible adaptarla a medida que el proyecto crece; te acompañamos también en esa instancia.',
+        },
+      ],
+      relacionados: ['constitucion-de-sociedades', 'redaccion-de-contratos', 'asesoramiento-a-empresas'],
+    },
   },
   {
     slug: 'asesoramiento-a-empresas',
@@ -461,6 +854,48 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'asesoramiento legal para una empresa',
     resumenBreve: 'Asesoramiento jurídico integral para empresas en su operación diaria.',
     keywords: ['asesoramiento empresas', 'asesoramiento legal empresarial', 'pyme'],
+    contenido: {
+      problema:
+        'Las empresas enfrentan de manera constante decisiones con impacto legal — desde su operación diaria hasta su relación con clientes, proveedores y organismos públicos — que conviene resolver con acompañamiento jurídico continuo, no solo frente a un conflicto puntual.',
+      situaciones: [
+        'Empresas que necesitan asesoramiento legal continuo para su operación diaria.',
+        'Dudas puntuales sobre la legalidad de una decisión comercial o societaria.',
+        'Relación con clientes, proveedores u organismos públicos que requiere respaldo legal.',
+        'Necesidad de coordinar distintas áreas legales (societaria, laboral, contractual) de manera integral.',
+      ],
+      servicios: [
+        'Asesoramiento legal continuo para la operación de la empresa.',
+        'Coordinación de cuestiones societarias, contractuales y regulatorias según las necesidades de cada empresa.',
+        'Revisión y redacción de contratos comerciales.',
+        'Representación frente a organismos públicos cuando la empresa lo requiere.',
+      ],
+      comoTrabaja: [
+        'Relevamos la actividad de la empresa y sus necesidades legales actuales.',
+        'Definimos junto con ustedes qué cuestiones requieren atención prioritaria.',
+        'Brindamos asesoramiento continuo o puntual, según lo que necesite la empresa.',
+        'Coordinamos con las demás áreas del estudio cuando el caso lo requiere (societario, laboral, contratos).',
+      ],
+      documentacionInicial: [
+        'Información general de la empresa (actividad, estructura societaria).',
+        'La cuestión concreta a resolver, si la consulta es puntual.',
+        'Documentación relacionada con la consulta (contratos, notificaciones, etc.).',
+      ],
+      faq: [
+        {
+          pregunta: '¿Trabajan solo con consultas puntuales o también de manera continua?',
+          respuesta: 'Ambas modalidades son posibles; lo definimos según lo que necesite tu empresa.',
+        },
+        {
+          pregunta: '¿Qué tipo de empresas asesoran?',
+          respuesta: 'Empresas y emprendimientos de distintos tamaños y actividades. Contanos tu caso para evaluar cómo podemos ayudarte.',
+        },
+        {
+          pregunta: '¿Pueden representarnos frente a un organismo público?',
+          respuesta: 'Sí, según el caso. Contanos la situación para evaluar cómo seguir.',
+        },
+      ],
+      relacionados: ['constitucion-de-sociedades', 'redaccion-de-contratos', 'derecho-administrativo-y-regulatorio'],
+    },
   },
   {
     slug: 'danos-y-perjuicios',
@@ -469,6 +904,48 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     temaFrase: 'un reclamo por daños y perjuicios',
     resumenBreve: 'Siniestros, responsabilidad civil y evaluación jurídica de contingencias.',
     keywords: ['daños y perjuicios', 'siniestro', 'responsabilidad civil', 'indemnización'],
+    contenido: {
+      problema:
+        'Un siniestro o un hecho dañoso —un accidente, un daño a la propiedad, una negligencia de un tercero— genera consecuencias que muchas veces no son reconocidas espontáneamente por el responsable ni por su seguro, y requieren un reclamo formal para ser reparadas.',
+      situaciones: [
+        'Siniestros con daños materiales o lesiones a las personas.',
+        'Responsabilidad civil de un tercero por un hecho dañoso.',
+        'Desacuerdos con una aseguradora sobre el alcance de la cobertura.',
+        'Necesidad de cuantificar y reclamar un daño sufrido.',
+      ],
+      servicios: [
+        'Evaluación del hecho dañoso y de la responsabilidad involucrada.',
+        'Cuantificación del daño (material, y cuando corresponde, moral) a reclamar.',
+        'Representación en el reclamo, administrativo o judicial, ante el responsable y su seguro.',
+        'Seguimiento del proceso hasta su resolución.',
+      ],
+      comoTrabaja: [
+        'Relevamos el hecho y la documentación disponible sobre el daño sufrido.',
+        'Analizamos la responsabilidad del tercero y la cobertura de los seguros involucrados.',
+        'Iniciamos el reclamo correspondiente.',
+        'Seguimos el proceso hasta la reparación del daño.',
+      ],
+      documentacionInicial: [
+        'Denuncia o constancia del hecho, si se hizo.',
+        'Informes médicos, presupuestos o facturas que acrediten el daño sufrido.',
+        'Datos del responsable y de su seguro, si se conocen.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Qué se puede reclamar en un caso de daños y perjuicios?',
+          respuesta: 'El daño material sufrido y, según el caso, el daño moral. Te asesoramos sobre qué corresponde reclamar en tu situación concreta.',
+        },
+        {
+          pregunta: '¿Puedo reclamar si todavía no sé el monto exacto del daño?',
+          respuesta: 'Sí, la cuantificación es parte del trabajo inicial del caso.',
+        },
+        {
+          pregunta: '¿Cuánto tarda un reclamo por daños y perjuicios?',
+          respuesta: 'Depende de si se resuelve por la vía administrativa o judicial, y de la complejidad del caso. Te damos una estimación al evaluar tu situación.',
+        },
+      ],
+      relacionados: ['accidentes-de-transito', 'accidentes-de-trabajo', 'amparos-de-salud'],
+    },
   },
   {
     slug: 'acuerdos-de-desvinculacion-laboral',
@@ -478,6 +955,48 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     resumenBreve: 'Asesoramos a empleadores en el cierre de vínculos laborales, incluido el personal de casas particulares.',
     keywords: ['despido', 'desvinculación', 'acuerdo laboral', 'empleada doméstica', 'personal de casas particulares', 'indemnización laboral'],
     responsablePendiente: true,
+    contenido: {
+      problema:
+        'Cerrar un vínculo laboral de manera prolija —ya sea con un empleado de una empresa o con personal de casas particulares— reduce el riesgo de reclamos posteriores y ordena la salida para ambas partes.',
+      situaciones: [
+        'Empleadores que necesitan desvincular a un empleado y buscan hacerlo de manera ordenada.',
+        'Cierre del vínculo con personal de casas particulares (empleadas/os domésticos, cuidadores).',
+        'Necesidad de acordar los términos de una indemnización o liquidación final.',
+        'Dudas sobre cómo instrumentar legalmente un acuerdo de desvinculación.',
+      ],
+      servicios: [
+        'Asesoramiento a empleadores sobre la forma más adecuada de desvincular a un trabajador.',
+        'Redacción de acuerdos de desvinculación y liquidaciones finales.',
+        'Asesoramiento específico para el cierre del vínculo con personal de casas particulares.',
+        'Representación frente a reclamos posteriores al cese, si los hubiera.',
+      ],
+      comoTrabaja: [
+        'Relevamos la relación laboral y los motivos de la desvinculación.',
+        'Calculamos y ordenamos los conceptos a liquidar.',
+        'Redactamos el acuerdo de desvinculación correspondiente.',
+        'Acompañamos la instrumentación y, si surge, la respuesta a reclamos posteriores.',
+      ],
+      documentacionInicial: [
+        'Datos de la relación laboral (fecha de inicio, categoría, remuneración).',
+        'Recibos de sueldo recientes.',
+        'Motivo de la desvinculación.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Cómo se calcula la indemnización?',
+          respuesta: 'Depende de la antigüedad, la remuneración y el motivo del cese. Te damos el cálculo concreto al evaluar tu caso.',
+        },
+        {
+          pregunta: '¿Aplica lo mismo para personal de casas particulares?',
+          respuesta: 'El régimen tiene sus propias reglas, distintas de las de un empleado de empresa; te asesoramos sobre las diferencias puntuales.',
+        },
+        {
+          pregunta: '¿Un acuerdo de desvinculación evita reclamos posteriores?',
+          respuesta: 'Reduce el riesgo cuando está bien instrumentado, aunque no lo elimina por completo. Te asesoramos para dejarlo lo más prolijo posible.',
+        },
+      ],
+      relacionados: ['accidentes-de-trabajo', 'asesoramiento-a-empresas', 'redaccion-de-contratos'],
+    },
   },
   {
     slug: 'usucapiones-y-tramites-registrales',
