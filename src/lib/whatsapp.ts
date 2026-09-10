@@ -131,16 +131,18 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
         'Trámites de pensión por fallecimiento.',
       ],
       comoTrabaja: [
-        'Relevamos la historia laboral y los años de aportes registrados en ANSES.',
+        'Verificamos tu acceso a "Mi ANSES" y "Mi Argentina" (te ayudamos a crearlo si todavía no lo tenés) y revisamos con esos accesos tus años de aportes antes de avanzar.',
         'Evaluamos qué vía corresponde: jubilación ordinaria, moratoria, pensión, o reajuste de un beneficio ya otorgado.',
-        'Iniciamos o seguimos el trámite ante ANSES, o el reclamo judicial si la vía administrativa no da respuesta.',
-        'Te acompañamos hasta la resolución del beneficio o el reclamo.',
+        'Preparamos la documentación: completamos por vos el formulario de ANSES y la historia laboral, y te decimos exactamente qué papeles juntar de tu lado.',
+        'Te acompañamos personalmente el día de la presentación inicial en ANSES.',
+        'Hacemos seguimiento periódico del expediente (cada dos o tres semanas aproximadamente) hasta la resolución, incluyendo la gestión de la cobertura médica durante la transición.',
       ],
       documentacionInicial: [
-        'DNI.',
-        'Historia laboral (se puede solicitar en ANSES) o recibos de sueldo/aportes disponibles.',
+        'DNI y fotocopia.',
+        'Libreta de casamiento y partidas de nacimiento de los hijos, si corresponde (con sus fotocopias).',
+        'Recibos de sueldo o certificación de servicios disponibles.',
+        'Datos bancarios (CBU o alias) de la cuenta donde se van a percibir los haberes.',
         'Última resolución de ANSES, si ya hay un trámite en curso o un beneficio otorgado que se quiere cuestionar.',
-        'Carnet de afiliación a PAMI o a la prepaga/obra social actual, si la consulta es sobre cobertura médica.',
       ],
       faq: [
         {
@@ -151,7 +153,17 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
         {
           pregunta: '¿Puedo mantener mi prepaga en lugar de pasar a PAMI cuando me jubilo?',
           respuesta:
-            'En determinados casos es posible mantener la cobertura de la prepaga u obra social al jubilarte; depende de tu situación particular y de la entidad. Te asesoramos sobre las opciones concretas.',
+            'En determinados casos es posible mantener la cobertura de la prepaga u obra social al jubilarte, gestionando el cambio de plan correspondiente. Depende de tu situación particular y de la entidad — te acompañamos en esa gestión para que no se interrumpa tu cobertura médica.',
+        },
+        {
+          pregunta: '¿Tengo que ir personalmente a ANSES?',
+          respuesta:
+            'Para la presentación inicial del trámite, sí, y te acompañamos ese día. Los pasos posteriores los gestionamos nosotros, salvo alguna diligencia puntual que requiera tu presencia.',
+        },
+        {
+          pregunta: '¿Cuánto tarda el trámite y cómo se cobra lo adeudado mientras tanto?',
+          respuesta:
+            'Un trámite presencial ante ANSES suele demorar un par de meses una vez presentada toda la documentación. El beneficio se reconoce con retroactividad desde el inicio del trámite, así que no se pierde ese período.',
         },
         {
           pregunta: '¿Qué es un reajuste de haberes?',
