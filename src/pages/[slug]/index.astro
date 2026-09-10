@@ -14,6 +14,10 @@ interface Props {
   tema: TemaWhatsApp;
 }
 const { tema } = Astro.props as Props;
+const c = tema.contenido;
+const relacionados = c
+  ? c.relacionados.map((slug) => TEMAS_WHATSAPP.find((t) => t.slug === slug)).filter((t): t is TemaWhatsApp => !!t)
+  : [];
 ---
 
 <BaseLayout title={tema.etiqueta} description={tema.resumenBreve} path={`/${tema.slug}/`}>
@@ -24,7 +28,7 @@ const { tema } = Astro.props as Props;
       </nav>
       <span class="eyebrow">Área de práctica</span>
       <h1>{tema.etiqueta}</h1>
-      <p class="area__resumen">{tema.resumenBreve}</p>
+      <p class="area__resumen">{c ? c.problema : tema.resumenBreve}</p>
 
       <div class="area__cta">
         <WhatsAppButton
@@ -34,13 +38,98 @@ const { tema } = Astro.props as Props;
         />
       </div>
 
-      <p class="area__nota">
-        Estamos completando el contenido detallado de esta área (situaciones frecuentes,
-        documentación inicial y preguntas frecuentes). Mientras tanto, contanos tu situación
-        por WhatsApp y te decimos cómo podemos ayudarte.
-      </p>
+      {!c && (
+        <p class="area__nota">
+          Estamos completando el contenido detallado de esta área (situaciones frecuentes,
+          documentación inicial y preguntas frecuentes). Mientras tanto, contanos tu situación
+          por WhatsApp y te decimos cómo podemos ayudarte.
+        </p>
+      )}
     </div>
   </section>
+
+  {c && (
+    <>
+      <section class="section section--beige">
+        <div class="container area-grid">
+          <div>
+            <h2>En qué situaciones intervenimos</h2>
+            <ul class="area-list">
+              {c.situaciones.map((s) => <li>{s}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h2>Servicios concretos</h2>
+            <ul class="area-list">
+              {c.servicios.map((s) => <li>{s}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container area-grid">
+          <div>
+            <h2>Cómo trabajamos</h2>
+            <ol class="area-steps">
+              {c.comoTrabaja.map((s) => <li>{s}</li>)}
+            </ol>
+          </div>
+          <div>
+            <h2>Documentación inicial que suele ser útil</h2>
+            <ul class="area-list">
+              {c.documentacionInicial.map((s) => <li>{s}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--beige">
+        <div class="container">
+          <h2>Preguntas frecuentes</h2>
+          <div class="faq-list">
+            {c.faq.map((item) => (
+              <details class="faq-item">
+                <summary>{item.pregunta}</summary>
+                <p>{item.respuesta}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {relacionados.length > 0 && (
+        <section class="section">
+          <div class="container">
+            <h2>Servicios relacionados</h2>
+            <div class="relacionados-grid">
+              {relacionados.map((rel) => (
+                <a class="relacionado-card" href={`/${rel.slug}/`}>
+                  <span>{rel.etiqueta}</span>
+                  <span class="relacionado-card__cta">Ver más →</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="section section--dark cta-final">
+        <div class="container cta-final__grid">
+          <div>
+            <h2>¿Tu situación es sobre {tema.etiqueta.toLowerCase()}?</h2>
+            <p>Contanos brevemente de qué se trata y te decimos cómo podemos ayudarte.</p>
+          </div>
+          <WhatsAppButton
+            responsable={tema.responsable}
+            mensaje={tema.mensaje}
+            label={`Consultar por ${tema.etiqueta.toLowerCase()}`}
+            variant="outline-dark"
+          />
+        </div>
+      </section>
+    </>
+  )}
 </BaseLayout>
 
 <style>
@@ -61,11 +150,11 @@ const { tema } = Astro.props as Props;
   }
   .area__resumen {
     font-size: 1.1rem;
-    max-width: 60ch;
+    max-width: 65ch;
     margin-bottom: 2rem;
   }
   .area__cta {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
   }
   .area__nota {
     max-width: 55ch;
@@ -73,5 +162,158 @@ const { tema } = Astro.props as Props;
     color: var(--text-muted);
     border-top: 1px solid var(--border-subtle);
     padding-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .area-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .area-grid h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+  .area-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .area-list li {
+    padding-left: 1.25rem;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .area-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold);
+    border-radius: 50%;
+  }
+  .area-steps {
+    list-style: none;
+    counter-reset: paso;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .area-steps li {
+    counter-increment: paso;
+    padding-left: 2.25rem;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .area-steps li::before {
+    content: counter(paso);
+    position: absolute;
+    left: 0;
+    top: -0.1em;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 1px solid var(--color-navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-navy);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    max-width: 75ch;
+  }
+  .faq-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 1.1rem 1.4rem;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-navy);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item summary::after {
+    content: '+';
+    float: right;
+    color: var(--color-gold);
+    font-weight: 700;
+  }
+  .faq-item[open] summary::after {
+    content: '–';
+  }
+  .faq-item p {
+    margin: 0.9rem 0 0;
+    font-size: 0.93rem;
+    color: var(--text-body);
+  }
+
+  .relacionados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .relacionado-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border-subtle);
+    text-decoration: none;
+    background: var(--bg-surface);
+  }
+  .relacionado-card:hover {
+    background: var(--color-cream);
+  }
+  .relacionado-card span:first-child {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--color-navy);
+  }
+  .relacionado-card__cta {
+    font-size: 0.8rem;
+    color: var(--color-taupe);
+  }
+
+  .cta-final__grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .cta-final__grid p {
+    color: var(--text-on-dark-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 800px) {
+    .area-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 </style>
