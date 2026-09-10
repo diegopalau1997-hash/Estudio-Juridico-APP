@@ -14,6 +14,12 @@ interface Socio {
   /** Número en formato E.164 sin "+", con el "9" de celular argentino, para wa.me. */
   numeroWa: string;
   email: string;
+  rol: string;
+  /** Título(s) y matrícula, tal como figuran en su propia firma de mail o bio publicada. */
+  formacion: string[];
+  matricula?: string;
+  /** Bio corta, texto ya publicado y aprobado por el estudio en su Instagram (@estudiojapp). */
+  bio: string[];
 }
 
 export const SOCIOS: Record<Responsable, Socio> = {
@@ -22,12 +28,25 @@ export const SOCIOS: Record<Responsable, Socio> = {
     numeroVisible: '+54 9 11 3628-5550',
     numeroWa: '5491136285550',
     email: 'giselepaoletti@gmail.com',
+    rol: 'Socia',
+    formacion: ['Abogada (UBA)', 'Magíster en Administración y Políticas Públicas (UDESA)'],
+    bio: [
+      'Aporta una visión integral, técnica y sensible que se adapta a cada contexto, con experiencia en asesoramiento jurídico y gestión pública, acompañando procesos vinculados a decisiones patrimoniales, derechos y relaciones de consumo.',
+      'Trabaja también en jubilaciones y pensiones, y en el seguimiento de trámites administrativos y judiciales, con una mirada atenta al recorrido de cada persona y organización.',
+    ],
   },
   diego: {
     nombre: 'Diego Palau',
     numeroVisible: '+54 11 5464-3910',
     numeroWa: '5491154643910',
     email: 'diego.palau1997@gmail.com',
+    rol: 'Socio',
+    formacion: ['Abogado (UNLaM)', 'Magíster en Derecho y Economía (Universidad Torcuato Di Tella)'],
+    matricula: 'Tº139 Fº952 C.P.A.C.F.',
+    bio: [
+      'Aporta una mirada estratégica y rigurosa al momento de pensar y ordenar decisiones legales que requieren claridad. Su trabajo combina experiencia en procesos legales, análisis de normas y lectura del contexto, tanto para marcas y patentes como para la protección de ideas y activos intangibles.',
+      'También presta acompañamiento en trámites de ciudadanía y migración, con precisión y sensibilidad a nivel legal.',
+    ],
   },
 };
 
@@ -67,13 +86,12 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     etiqueta: 'Accidentes de trabajo',
     responsable: 'diego',
     mensaje: 'Hola, quisiera hacer una consulta por un accidente de trabajo.',
-    resumenBreve: 'Asistencia y asesoramiento frente a accidentes de trabajo y reclamos laborales.',
-    responsablePendiente: true,
+    resumenBreve: 'Asistencia y asesoramiento frente a accidentes de trabajo y enfermedades profesionales.',
   },
   {
     slug: 'divorcios',
     etiqueta: 'Divorcios',
-    responsable: 'diego',
+    responsable: 'gisele',
     mensaje: 'Hola, quisiera hacer una consulta sobre un divorcio.',
     resumenBreve: 'Acompañamiento legal durante el proceso de divorcio y sus cuestiones vinculadas.',
     responsablePendiente: true,
@@ -83,13 +101,12 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     etiqueta: 'Ciudadanías',
     responsable: 'diego',
     mensaje: 'Hola, quisiera hacer una consulta sobre un trámite de ciudadanía.',
-    resumenBreve: 'Asistencia en procesos y trámites vinculados con ciudadanía.',
-    responsablePendiente: true,
+    resumenBreve: 'Asistencia en procesos y trámites vinculados con ciudadanía y migración.',
   },
   {
     slug: 'sucesiones',
     etiqueta: 'Sucesiones',
-    responsable: 'diego',
+    responsable: 'gisele',
     mensaje: 'Hola, quisiera hacer una consulta sobre una sucesión.',
     resumenBreve: 'Asesoramiento jurídico para procesos sucesorios y cuestiones relacionadas.',
     responsablePendiente: true,
@@ -100,7 +117,6 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsable: 'diego',
     mensaje: 'Hola, quisiera consultar por el registro de una marca.',
     resumenBreve: 'Asesoramiento en protección y gestión de activos marcarios.',
-    responsablePendiente: true,
   },
   {
     slug: 'patentes',
@@ -108,7 +124,6 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsable: 'diego',
     mensaje: 'Hola, quisiera hacer una consulta sobre una patente.',
     resumenBreve: 'Orientación jurídica para la protección de invenciones.',
-    responsablePendiente: true,
   },
   {
     slug: 'derecho-de-autor',
@@ -116,7 +131,6 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsable: 'diego',
     mensaje: 'Hola, quisiera hacer una consulta sobre derecho de autor.',
     resumenBreve: 'Orientación jurídica para la protección de creaciones y derechos intelectuales.',
-    responsablePendiente: true,
   },
   {
     slug: 'derecho-administrativo-y-regulatorio',
@@ -125,7 +139,20 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     mensaje:
       'Hola, quisiera hacer una consulta sobre un trámite administrativo/regulatorio ante un organismo público.',
     resumenBreve: 'Procedimientos administrativos, trámites y relaciones con organismos públicos y el Estado Nacional.',
-    responsablePendiente: true,
+  },
+  {
+    slug: 'defensa-del-consumidor',
+    etiqueta: 'Defensa del consumidor',
+    responsable: 'gisele',
+    mensaje: 'Hola, quisiera hacer una consulta sobre defensa del consumidor.',
+    resumenBreve: 'Protección efectiva de derechos del consumidor y resolución de conflictos de consumo.',
+  },
+  {
+    slug: 'danos-y-perjuicios',
+    etiqueta: 'Daños y perjuicios',
+    responsable: 'gisele',
+    mensaje: 'Hola, quisiera hacer una consulta sobre un reclamo por daños y perjuicios.',
+    resumenBreve: 'Siniestros, responsabilidad civil y evaluación jurídica de contingencias.',
   },
   {
     slug: 'usucapiones-y-tramites-registrales',

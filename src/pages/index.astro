@@ -1,9 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Logo from '../components/Logo.astro';
 import WhatsAppPicker from '../components/WhatsAppPicker.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { TEMAS_WHATSAPP, SOCIOS } from '../lib/whatsapp';
+import giselePhoto from '../assets/equipo/gisele-paoletti.png';
+import diegoPhoto from '../assets/equipo/diego-palau.jpeg';
 
 const valores = ['Seriedad', 'Confianza', 'Conocimiento', 'Responsabilidad', 'Prolijidad', 'Eficiencia'];
 
@@ -135,7 +138,7 @@ const metodologia = [
       <h2>Paoletti y Palau.</h2>
       <div class="equipo-grid">
         <article class="equipo-card">
-          <div class="equipo-card__avatar" aria-hidden="true">GP</div>
+          <Image src={giselePhoto} alt={SOCIOS.gisele.nombre} class="equipo-card__foto" width={160} height={200} />
           <h3>{SOCIOS.gisele.nombre}</h3>
           <p class="equipo-card__rol">Socia</p>
           <WhatsAppButton
@@ -146,7 +149,7 @@ const metodologia = [
           />
         </article>
         <article class="equipo-card">
-          <div class="equipo-card__avatar" aria-hidden="true">DP</div>
+          <Image src={diegoPhoto} alt={SOCIOS.diego.nombre} class="equipo-card__foto" width={160} height={200} />
           <h3>{SOCIOS.diego.nombre}</h3>
           <p class="equipo-card__rol">Socio</p>
           <WhatsAppButton
@@ -327,17 +330,11 @@ const metodologia = [
     align-items: flex-start;
     gap: 0.75rem;
   }
-  .equipo-card__avatar {
-    width: 3.5rem;
-    height: 3.5rem;
+  .equipo-card__foto {
+    width: 4.5rem;
+    height: 4.5rem;
     border-radius: 50%;
-    background: var(--color-navy);
-    color: var(--color-cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-serif);
-    font-weight: 800;
+    object-fit: cover;
   }
   .equipo-card h3 {
     margin-bottom: 0;

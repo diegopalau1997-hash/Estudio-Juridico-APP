@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
 import { SOCIOS } from '../../lib/whatsapp';
+import giselePhoto from '../../assets/equipo/gisele-paoletti.png';
+import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
 ---
 
 <BaseLayout
@@ -20,9 +23,13 @@ import { SOCIOS } from '../../lib/whatsapp';
 
       <div class="equipo-grid">
         <article class="equipo-card">
-          <div class="equipo-card__avatar" aria-hidden="true">GP</div>
+          <Image src={giselePhoto} alt={SOCIOS.gisele.nombre} class="equipo-card__foto" width={320} height={400} />
           <h2>{SOCIOS.gisele.nombre}</h2>
-          <p class="equipo-card__rol">Socia</p>
+          <p class="equipo-card__rol">{SOCIOS.gisele.rol}</p>
+          <ul class="equipo-card__formacion">
+            {SOCIOS.gisele.formacion.map((f) => <li>{f}</li>)}
+          </ul>
+          {SOCIOS.gisele.bio.map((p) => <p class="equipo-card__bio">{p}</p>)}
           <ul class="equipo-card__contacto">
             <li><a href={`mailto:${SOCIOS.gisele.email}`}>{SOCIOS.gisele.email}</a></li>
             <li>{SOCIOS.gisele.numeroVisible}</li>
@@ -35,9 +42,16 @@ import { SOCIOS } from '../../lib/whatsapp';
         </article>
 
         <article class="equipo-card">
-          <div class="equipo-card__avatar" aria-hidden="true">DP</div>
+          <Image src={diegoPhoto} alt={SOCIOS.diego.nombre} class="equipo-card__foto" width={320} height={400} />
           <h2>{SOCIOS.diego.nombre}</h2>
-          <p class="equipo-card__rol">Socio</p>
+          <p class="equipo-card__rol">
+            {SOCIOS.diego.rol}
+            {SOCIOS.diego.matricula && <span class="equipo-card__matricula"> · {SOCIOS.diego.matricula}</span>}
+          </p>
+          <ul class="equipo-card__formacion">
+            {SOCIOS.diego.formacion.map((f) => <li>{f}</li>)}
+          </ul>
+          {SOCIOS.diego.bio.map((p) => <p class="equipo-card__bio">{p}</p>)}
           <ul class="equipo-card__contacto">
             <li><a href={`mailto:${SOCIOS.diego.email}`}>{SOCIOS.diego.email}</a></li>
             <li>{SOCIOS.diego.numeroVisible}</li>
@@ -65,37 +79,47 @@ import { SOCIOS } from '../../lib/whatsapp';
   }
   .equipo-card {
     border: 1px solid var(--border-subtle);
-    padding: 2.5rem;
+    padding: 2.25rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
-  .equipo-card__avatar {
-    width: 4.5rem;
-    height: 4.5rem;
+  .equipo-card__foto {
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
-    background: var(--color-navy);
-    color: var(--color-cream);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-serif);
-    font-weight: 800;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
   }
   .equipo-card h2 {
     margin-bottom: 0.1rem;
   }
   .equipo-card__rol {
     color: var(--text-muted);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .equipo-card__matricula {
+    color: var(--color-taupe);
+  }
+  .equipo-card__formacion {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    font-size: 0.88rem;
+    color: var(--text-body);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .equipo-card__bio {
+    font-size: 0.92rem;
   }
   .equipo-card__contacto {
     list-style: none;
     padding: 0;
-    margin: 0 0 1.5rem;
+    margin: 0.5rem 0 1.5rem;
     font-size: 0.92rem;
   }
   .equipo-card__contacto a {
