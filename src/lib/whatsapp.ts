@@ -114,6 +114,52 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsable: 'diego',
     mensaje: 'Hola, quisiera hacer una consulta por un accidente de trabajo.',
     resumenBreve: 'Asistencia y asesoramiento frente a accidentes de trabajo y enfermedades profesionales.',
+    contenido: {
+      problema:
+        'Después de un accidente de trabajo o una enfermedad profesional, no siempre queda claro qué cobertura corresponde ni cómo seguir si la ART no reconoce lo que debería.',
+      situaciones: [
+        'Accidentes de trabajo, incluidos los accidentes in itínere (en el trayecto entre el domicilio y el trabajo).',
+        'Enfermedades profesionales derivadas de la actividad laboral.',
+        'Incapacidad total o parcial derivada de un accidente o enfermedad laboral.',
+        'Desacuerdos con la ART sobre la cobertura otorgada o el grado de incapacidad reconocido.',
+      ],
+      servicios: [
+        'Asesoramiento sobre la cobertura que corresponde según cada caso.',
+        'Representación en reclamos ante la ART.',
+        'Representación en reclamos judiciales cuando la vía administrativa no da una respuesta adecuada.',
+        'Seguimiento del proceso de determinación de incapacidad.',
+      ],
+      comoTrabaja: [
+        'Relevamos lo sucedido y la documentación médica y laboral disponible.',
+        'Analizamos qué cobertura corresponde y en qué estado está el trámite ante la ART.',
+        'Te acompañamos en el reclamo, sea administrativo o judicial.',
+        'Seguimos el caso hasta su resolución.',
+      ],
+      documentacionInicial: [
+        'Denuncia del accidente ante la ART, si ya se hizo.',
+        'Informes o certificados médicos relacionados.',
+        'Recibos de sueldo recientes.',
+        'Datos del empleador y de la ART correspondiente.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Un accidente en el trayecto al trabajo también está cubierto?',
+          respuesta:
+            'Sí, los accidentes in itínere (en el trayecto entre el domicilio y el trabajo) están comprendidos por el sistema de riesgos del trabajo, cumpliendo determinados requisitos que evaluamos según tu caso.',
+        },
+        {
+          pregunta: '¿Qué hago si la ART no me reconoce la incapacidad que tengo?',
+          respuesta:
+            'Podés cuestionar esa decisión. Te asesoramos sobre el camino administrativo y, si corresponde, judicial para reclamarlo.',
+        },
+        {
+          pregunta: '¿Puedo reclamar aunque haya pasado tiempo desde el accidente?',
+          respuesta:
+            'Depende del caso: existen plazos legales para reclamar. Contanos cuándo ocurrió y cómo sigue tu situación para evaluar si el reclamo sigue vigente.',
+        },
+      ],
+      relacionados: ['acuerdos-de-desvinculacion-laboral', 'danos-y-perjuicios', 'derecho-administrativo-y-regulatorio'],
+    },
   },
   {
     slug: 'divorcios',
@@ -122,6 +168,50 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     mensaje: 'Hola, quisiera hacer una consulta sobre un divorcio.',
     resumenBreve: 'Acompañamiento legal durante el proceso de divorcio y sus cuestiones vinculadas.',
     responsablePendiente: true,
+    contenido: {
+      problema:
+        'Un divorcio implica tanto la decisión de separarse como, en la mayoría de los casos, resolver la situación de los bienes en común y de los hijos, si los hay. Son decisiones que conviene tomar con información clara sobre las opciones y los tiempos.',
+      situaciones: [
+        'Parejas que deciden separarse, de común acuerdo o por decisión de una sola de las partes.',
+        'Necesidad de resolver la división de bienes en común.',
+        'Cuestiones vinculadas a hijos en común (cuidado personal, alimentos).',
+      ],
+      servicios: [
+        'Asesoramiento y representación en el proceso de divorcio.',
+        'Acompañamiento en la división de bienes.',
+        'Redacción y gestión del convenio regulador.',
+      ],
+      comoTrabaja: [
+        'Relevamos la situación familiar y patrimonial.',
+        'Te explicamos con claridad las opciones disponibles y sus tiempos.',
+        'Si hay bienes en común, ordenamos su división.',
+        'Acompañamos el trámite hasta la resolución definitiva.',
+      ],
+      documentacionInicial: [
+        'DNI de ambas partes.',
+        'Acta de matrimonio.',
+        'Datos de los bienes en común (inmuebles, cuentas, vehículos).',
+        'Datos de los hijos en común, si los hay.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Necesito el consentimiento de mi pareja para divorciarme?',
+          respuesta:
+            'No. En Argentina, el divorcio puede solicitarse por decisión de uno solo de los cónyuges, sin necesidad de acuerdo de la otra parte.',
+        },
+        {
+          pregunta: '¿El divorcio implica dividir los bienes automáticamente?',
+          respuesta:
+            'No necesariamente en el mismo trámite. La división de bienes puede resolverse junto con el divorcio o en una instancia posterior, según cada caso.',
+        },
+        {
+          pregunta: '¿Qué pasa con los hijos en común?',
+          respuesta:
+            'Las cuestiones de cuidado personal y alimentos se abordan como parte del proceso, priorizando siempre el interés de los chicos.',
+        },
+      ],
+      relacionados: ['sucesiones', 'danos-y-perjuicios', 'redaccion-de-contratos'],
+    },
   },
   {
     slug: 'ciudadanias',
@@ -137,6 +227,50 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     mensaje: 'Hola, quisiera hacer una consulta sobre una sucesión.',
     resumenBreve: 'Asesoramiento jurídico para procesos sucesorios y cuestiones relacionadas.',
     responsablePendiente: true,
+    contenido: {
+      problema:
+        'Cuando fallece un familiar, o incluso antes, surge la necesidad de organizar cómo se transmite su patrimonio a los herederos. Hacerlo con información clara evita conflictos familiares y simplifica los trámites.',
+      situaciones: [
+        'Fallecimiento de un familiar y necesidad de iniciar la sucesión.',
+        'Personas que quieren organizar en vida cómo se va a repartir su patrimonio.',
+        'Dudas o desacuerdos entre herederos sobre cómo seguir.',
+      ],
+      servicios: [
+        'Inicio y tramitación de la sucesión.',
+        'Asesoramiento sobre la cesión de bienes con reserva de usufructo.',
+        'Asesoramiento sobre testamentos y sus alcances.',
+      ],
+      comoTrabaja: [
+        'Relevamos la composición del patrimonio y el grupo de herederos.',
+        'Explicamos las alternativas disponibles (sucesión, cesión con reserva de usufructo, testamento) y sus implicancias.',
+        'Armamos y presentamos la documentación necesaria.',
+        'Acompañamos hasta resolver la situación de los bienes.',
+      ],
+      documentacionInicial: [
+        'Partida de defunción, si ya ocurrió el fallecimiento.',
+        'DNI de los herederos.',
+        'Documentación de los bienes (títulos de propiedad, resúmenes de cuentas, etc.).',
+        'Partidas de nacimiento o matrimonio que acrediten el vínculo con el fallecido.',
+      ],
+      faq: [
+        {
+          pregunta: '¿Qué es la cesión con reserva de usufructo?',
+          respuesta:
+            'Es un contrato entre una persona y sus herederos por el cual se transfiere un bien —por ejemplo, una propiedad— pero reservando su uso y goce vitalicio: los herederos no pueden vender ni alquilar el bien mientras esa persona esté viva. Sirve para ordenar la sucesión y ahorrar tiempo en los trámites futuros.',
+        },
+        {
+          pregunta: '¿Puedo repartir mis bienes como quiera con un testamento?',
+          respuesta:
+            'El testamento permite decidir sobre parte del patrimonio, pero en Argentina tiene límites legales en favor de ciertos herederos. Te explicamos qué margen real existe en tu caso.',
+        },
+        {
+          pregunta: '¿Cuándo conviene iniciar la sucesión?',
+          respuesta:
+            'Apenas sea posible después del fallecimiento, para poder disponer de los bienes (venderlos, cobrar cuentas, etc.). Cuanto antes se ordene la documentación, más simple resulta el trámite.',
+        },
+      ],
+      relacionados: ['usucapiones-y-tramites-registrales', 'divorcios', 'danos-y-perjuicios'],
+    },
   },
   {
     slug: 'marcas',
