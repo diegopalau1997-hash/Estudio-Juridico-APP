@@ -71,13 +71,10 @@ WhatsApp llevan el "9" de celular argentino en el campo `numeroWa` (formato que 
 
 ## Cómo reemplazar fotografías del equipo
 
-Hoy `/equipo/` y la Home muestran un avatar con iniciales (no hay fotos reales todavía — ver
-`03_EQUIPO/bios.txt` en la carpeta del proyecto). Cuando estén las fotos:
-1. Colocarlas en `src/assets/equipo/` (crear la carpeta) como `gisele-paoletti.jpg` y
-   `diego-palau.jpg`.
-2. En `src/pages/equipo/index.astro` (y en el bloque "Equipo" de `src/pages/index.astro`),
-   reemplazar el `<div class="equipo-card__avatar">` por `<Image src={...} alt="..." />` usando
-   `astro:assets` para que se optimicen automáticamente (WebP, tamaños responsive).
+Las fotos están en `src/assets/equipo/` (`gisele-paoletti.png`, `diego-palau.jpeg`) e importadas
+con `astro:assets` en `src/pages/equipo/index.astro` y en el bloque "Equipo" de
+`src/pages/index.astro` — Astro las optimiza solo (WebP, tamaños). Para reemplazarlas, pisar esos
+archivos (o cambiar el nombre y actualizar el `import` en ambos lugares).
 
 ## Cómo cambiar metadata (SEO)
 
@@ -96,8 +93,26 @@ se agregue Analytics: `whatsapp_click` (ya se puede disparar desde los `<a href=
 
 ## Publicar / deployment
 
-El build (`npm run build`) genera un sitio 100% estático en `dist/` — se puede publicar en
-cualquier hosting estático (Netlify, Vercel, GitHub Pages, Cloudflare Pages, un hosting
-tradicional por FTP, etc.) sin necesidad de Node.js corriendo en el servidor. Configurar el
-dominio `www.estudiojapp.com.ar` para apuntar al hosting elegido y, del lado de Astro, no hace
-falta ningún cambio adicional (ya está seteado el `site` correcto en `astro.config.mjs`).
+El build (`npm run build`) genera un sitio 100% estático en `dist/` — no necesita Node.js
+corriendo en el servidor. Deployment elegido: **GitHub + Cloudflare Pages**.
+
+1. **GitHub**: crear un repo vacío (sin README) en github.com, agregar como remoto y pushear:
+   ```bash
+   git remote add origin https://github.com/<usuario>/estudio-app-web.git
+   git push -u origin master
+   ```
+2. **Cloudflare Pages**: Dashboard → *Workers & Pages* → *Create* → *Pages* → *Connect to Git* →
+   elegir el repo. Build settings:
+   - Framework preset: `Astro`
+   - Build command: `npm run build`
+   - Output directory: `dist`
+
+   Cloudflare Pages queda con deploy automático en cada push a `master`.
+3. **Dominio** (`estudiojapp.com.ar`, registrado en NIC Argentina — vence 1/9/2027): en Cloudflare
+   Pages → *Custom domains* → agregar `www.estudiojapp.com.ar`. Cloudflare indica qué registro DNS
+   agregar; como el dominio vive en NIC (no en Cloudflare), esto se agrega desde el panel de NIC
+   Argentina (TAD) — o, para que Cloudflare maneje todo el DNS, delegar el dominio a los
+   nameservers de Cloudflare desde la sección "Delegación" de NIC. HTTPS se activa solo una vez
+   que el DNS propaga.
+4. **Search Console**: agregar la propiedad `https://www.estudiojapp.com.ar` en
+   search.google.com/search-console y cargar `https://www.estudiojapp.com.ar/sitemap.xml`.
