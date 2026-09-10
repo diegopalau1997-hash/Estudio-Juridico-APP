@@ -34,7 +34,14 @@ const personas: Responsable[] = ['gisele', 'diego'];
         <ul>
           {personas.map((responsable) => (
             <li>
-              <a href={waLink(responsable, mensajePersona(responsable))} target="_blank" rel="noopener noreferrer" role="menuitem">
+              <a
+                href={waLink(responsable, mensajePersona(responsable))}
+                data-tema="personas"
+                data-responsable={responsable}
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+              >
                 <span>{SOCIOS[responsable].nombre}</span>
                 <span class="wa-picker__socio">{SOCIOS[responsable].rol}</span>
               </a>
@@ -56,7 +63,14 @@ const personas: Responsable[] = ['gisele', 'diego'];
           <ul>
             {TEMAS_WHATSAPP.map((tema) => (
               <li data-searchable data-search-index={searchIndex(tema)}>
-                <a href={waLink(tema.responsable, mensajeTema(tema))} target="_blank" rel="noopener noreferrer" role="menuitem">
+                <a
+                  href={waLink(tema.responsable, mensajeTema(tema))}
+                  data-tema={tema.slug}
+                  data-responsable={tema.responsable}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="menuitem"
+                >
                   <span>{tema.etiqueta}</span>
                   <span class="wa-picker__socio">{SOCIOS[tema.responsable].nombre.split(' ')[0]}</span>
                 </a>
@@ -66,6 +80,8 @@ const personas: Responsable[] = ['gisele', 'diego'];
               <a
                 href={waLink(TEMA_OTRA_CONSULTA.responsable, mensajeTema(TEMA_OTRA_CONSULTA))}
                 data-wa-general
+                data-tema="otra-consulta"
+                data-responsable={TEMA_OTRA_CONSULTA.responsable}
                 target="_blank"
                 rel="noopener noreferrer"
                 role="menuitem"
@@ -115,6 +131,7 @@ const personas: Responsable[] = ['gisele', 'diego'];
     // (el flotante, o el del cuerpo de la página) todavía no existirían en el DOM.
     document.querySelectorAll('[data-wa-general]').forEach(function (el) {
       el.setAttribute('href', href);
+      el.setAttribute('data-responsable', next);
       var nombreEl = el.querySelector('[data-wa-general-nombre]');
       if (nombreEl) nombreEl.textContent = nombres[next];
     });

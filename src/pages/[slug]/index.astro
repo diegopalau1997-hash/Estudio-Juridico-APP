@@ -34,6 +34,7 @@ const relacionados = c
         <WhatsAppButton
           responsable={tema.responsable}
           mensaje={mensajeTema(tema)}
+          tema={tema.slug}
           label={`Consultar por ${tema.etiqueta.toLowerCase()}`}
         />
       </div>
@@ -123,6 +124,7 @@ const relacionados = c
           <WhatsAppButton
             responsable={tema.responsable}
             mensaje={mensajeTema(tema)}
+            tema={tema.slug}
             label={`Consultar por ${tema.etiqueta.toLowerCase()}`}
             variant="outline-dark"
           />

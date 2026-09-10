@@ -11,6 +11,8 @@ interface Props {
   path: string;
 }
 const { title, description, path } = Astro.props;
+/** Propiedad GA4 "Estudio Jurídico APP - sitio web" (analytics.google.com). No es secreto. */
+const GA4_MEASUREMENT_ID = 'G-M3RLVVCEPP';
 const siteUrl = 'https://www.estudiojapp.com.ar';
 const canonical = `${siteUrl}${path}`;
 const fullTitle = `${title} | Estudio Jurídico APP`;
@@ -39,6 +41,21 @@ const waMode = path === '/' ? 'personas' : 'temas';
     <meta name="twitter:description" content={description} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- Google Analytics 4 (Estudio Jurídico APP). El ID de medición es público por diseño
+         (viaja en el HTML de cualquier sitio con GA4), no es un secreto. -->
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA4_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA4_MEASUREMENT_ID);
+    </script>
+    <script is:inline src="/analytics.js" defer></script>
+
     <script is:inline src="/area-search.js" defer></script>
     <slot name="head" />
   </head>
