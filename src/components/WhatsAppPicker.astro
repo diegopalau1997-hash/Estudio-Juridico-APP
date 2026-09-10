@@ -1,5 +1,14 @@
 ---
-import { SOCIOS, TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA, waLink, type Responsable } from '../lib/whatsapp';
+import {
+  SOCIOS,
+  TEMAS_WHATSAPP,
+  TEMA_OTRA_CONSULTA,
+  waLink,
+  mensajeTema,
+  mensajePersona,
+  searchIndex,
+  type Responsable,
+} from '../lib/whatsapp';
 
 interface Props {
   variant?: 'inline' | 'floating';
@@ -10,10 +19,7 @@ interface Props {
 }
 const { variant = 'inline', label = 'Consultar por WhatsApp', mode = 'temas' } = Astro.props;
 
-const personas: { responsable: Responsable; mensaje: string }[] = [
-  { responsable: 'gisele', mensaje: `Hola ${SOCIOS.gisele.nombre.split(' ')[0]}, quisiera hacer una consulta.` },
-  { responsable: 'diego', mensaje: `Hola ${SOCIOS.diego.nombre.split(' ')[0]}, quisiera hacer una consulta.` },
-];
+const personas: Responsable[] = ['gisele', 'diego'];
 ---
 
 <details class:list={['wa-picker', `wa-picker--${variant}`]}>
@@ -26,11 +32,11 @@ const personas: { responsable: Responsable; mensaje: string }[] = [
       <>
         <p class="wa-picker__hint">Elegí con quién querés hablar:</p>
         <ul>
-          {personas.map((p) => (
+          {personas.map((responsable) => (
             <li>
-              <a href={waLink(p.responsable, p.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
-                <span>{SOCIOS[p.responsable].nombre}</span>
-                <span class="wa-picker__socio">{SOCIOS[p.responsable].rol}</span>
+              <a href={waLink(responsable, mensajePersona(responsable))} target="_blank" rel="noopener noreferrer" role="menuitem">
+                <span>{SOCIOS[responsable].nombre}</span>
+                <span class="wa-picker__socio">{SOCIOS[responsable].rol}</span>
               </a>
             </li>
           ))}
@@ -39,25 +45,86 @@ const personas: { responsable: Responsable; mensaje: string }[] = [
     ) : (
       <>
         <p class="wa-picker__hint">Elegí el tema de tu consulta:</p>
-        <ul>
-          {TEMAS_WHATSAPP.map((tema) => (
-            <li>
-              <a href={waLink(tema.responsable, tema.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
-                <span>{tema.etiqueta}</span>
-                <span class="wa-picker__socio">{SOCIOS[tema.responsable].nombre.split(' ')[0]}</span>
+        <div data-search-scope>
+          <input
+            type="search"
+            class="wa-picker__search"
+            data-area-search-input
+            placeholder="Buscá por palabra clave..."
+            aria-label="Buscar tema por palabra clave"
+          />
+          <ul>
+            {TEMAS_WHATSAPP.map((tema) => (
+              <li data-searchable data-search-index={searchIndex(tema)}>
+                <a href={waLink(tema.responsable, mensajeTema(tema))} target="_blank" rel="noopener noreferrer" role="menuitem">
+                  <span>{tema.etiqueta}</span>
+                  <span class="wa-picker__socio">{SOCIOS[tema.responsable].nombre.split(' ')[0]}</span>
+                </a>
+              </li>
+            ))}
+            <li class="wa-picker__fallback">
+              <a
+                href={waLink(TEMA_OTRA_CONSULTA.responsable, mensajeTema(TEMA_OTRA_CONSULTA))}
+                data-wa-general
+                target="_blank"
+                rel="noopener noreferrer"
+                role="menuitem"
+              >
+                <span>{TEMA_OTRA_CONSULTA.etiqueta}</span>
+                <span class="wa-picker__socio" data-wa-general-nombre>{SOCIOS[TEMA_OTRA_CONSULTA.responsable].nombre.split(' ')[0]}</span>
               </a>
             </li>
-          ))}
-          <li class="wa-picker__fallback">
-            <a href={waLink(TEMA_OTRA_CONSULTA.responsable, TEMA_OTRA_CONSULTA.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
-              <span>{TEMA_OTRA_CONSULTA.etiqueta}</span>
-            </a>
-          </li>
-        </ul>
+          </ul>
+          <p class="wa-picker__empty" data-search-empty hidden>Ningún tema coincide — probá con otra palabra o elegí "Otra consulta".</p>
+        </div>
       </>
     )}
   </div>
 </details>
+
+<script
+  is:inline
+  define:vars={{
+    numeroGisele: SOCIOS.gisele.numeroWa,
+    numeroDiego: SOCIOS.diego.numeroWa,
+    nombreGisele: SOCIOS.gisele.nombre.split(' ')[0],
+    nombreDiego: SOCIOS.diego.nombre.split(' ')[0],
+  }}
+>
+  // Reparte "Otra consulta" entre Gisele y Diego, uno y uno por dispositivo (sin backend no
+  // hay forma de alternar entre visitantes distintos: esto guarda en localStorage a quién le
+  // tocó la última vez en ESTE navegador y usa al otro la próxima vez).
+  function aplicarRoundRobin() {
+    if (window.__waGeneralDone) return;
+    window.__waGeneralDone = true;
+    var next = 'diego';
+    try {
+      var last = localStorage.getItem('app-wa-general');
+      next = last === 'diego' ? 'gisele' : 'diego';
+      localStorage.setItem('app-wa-general', next);
+    } catch (e) {
+      /* localStorage no disponible: se mantiene el default del servidor */
+      return;
+    }
+    var numeros = { gisele: numeroGisele, diego: numeroDiego };
+    var nombres = { gisele: nombreGisele, diego: nombreDiego };
+    var mensaje = 'Buen día ' + nombres[next] + '; quisiera hacer una consulta.';
+    var href = 'https://wa.me/' + numeros[next] + '?text=' + encodeURIComponent(mensaje);
+    // Corre después de parsear todo el documento: si se ejecutara en el momento en que el
+    // parser encuentra este <script>, los WhatsAppPicker que aparecen más abajo en el HTML
+    // (el flotante, o el del cuerpo de la página) todavía no existirían en el DOM.
+    document.querySelectorAll('[data-wa-general]').forEach(function (el) {
+      el.setAttribute('href', href);
+      var nombreEl = el.querySelector('[data-wa-general-nombre]');
+      if (nombreEl) nombreEl.textContent = nombres[next];
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', aplicarRoundRobin);
+  } else {
+    aplicarRoundRobin();
+  }
+</script>
 
 <style>
   .wa-picker {
@@ -94,6 +161,26 @@ const personas: { responsable: Responsable; mensaje: string }[] = [
   }
   .wa-picker__hint {
     margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .wa-picker__search {
+    width: 100%;
+    margin-bottom: 0.6rem;
+    padding: 0.55rem 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--text-body);
+    background: var(--bg-page);
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+  }
+  .wa-picker__search:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+  .wa-picker__empty {
+    margin: 0.5rem 0.35rem 0;
     font-size: 0.8rem;
     color: var(--text-muted);
   }

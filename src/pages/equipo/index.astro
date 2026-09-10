@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { SOCIOS } from '../../lib/whatsapp';
+import { SOCIOS, mensajePersona } from '../../lib/whatsapp';
 import giselePhoto from '../../assets/equipo/gisele-paoletti.png';
 import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
 ---
@@ -25,7 +25,10 @@ import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
         <article class="equipo-card">
           <Image src={giselePhoto} alt={SOCIOS.gisele.nombre} class="equipo-card__foto" width={320} height={400} />
           <h2>{SOCIOS.gisele.nombre}</h2>
-          <p class="equipo-card__rol">{SOCIOS.gisele.rol}</p>
+          <p class="equipo-card__rol">
+            {SOCIOS.gisele.rol}
+            {SOCIOS.gisele.matricula && <span class="equipo-card__matricula"> · {SOCIOS.gisele.matricula}</span>}
+          </p>
           <ul class="equipo-card__formacion">
             {SOCIOS.gisele.formacion.map((f) => <li>{f}</li>)}
           </ul>
@@ -36,7 +39,7 @@ import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
           </ul>
           <WhatsAppButton
             responsable="gisele"
-            mensaje="Hola, quisiera hacer una consulta."
+            mensaje={mensajePersona('gisele')}
             label="Escribir a Gisele"
           />
         </article>
@@ -58,7 +61,7 @@ import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
           </ul>
           <WhatsAppButton
             responsable="diego"
-            mensaje="Hola, quisiera hacer una consulta."
+            mensaje={mensajePersona('diego')}
             label="Escribir a Diego"
           />
         </article>

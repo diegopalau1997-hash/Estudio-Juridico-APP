@@ -85,6 +85,15 @@ p {
   margin: 0 0 1em;
 }
 
+.lead {
+  text-align: justify;
+}
+@media (max-width: 640px) {
+  .lead {
+    text-align: left;
+  }
+}
+
 a {
   color: inherit;
 }

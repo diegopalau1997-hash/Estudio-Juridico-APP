@@ -17,6 +17,7 @@ interface Socio {
   rol: string;
   /** Título(s) y matrícula, tal como figuran en su propia firma de mail o bio publicada. */
   formacion: string[];
+  /** Matrícula profesional (colegio, tomo y folio). TODO: falta el dato de Gisele — pedir a Diego. */
   matricula?: string;
   /** Bio corta, texto ya publicado y aprobado por el estudio en su Instagram (@estudiojapp). */
   bio: string[];
@@ -30,6 +31,7 @@ export const SOCIOS: Record<Responsable, Socio> = {
     email: 'giselepaoletti@gmail.com',
     rol: 'Socia',
     formacion: ['Abogada (UBA)', 'Magíster en Administración y Políticas Públicas (UDESA)'],
+    // TODO: matrícula (tomo y folio) de Gisele — falta el dato, no inventar. Ver [slug]/whatsapp.ts.
     bio: [
       'Aporta una visión integral, técnica y sensible que se adapta a cada contexto, con experiencia en asesoramiento jurídico y gestión pública, acompañando procesos vinculados a decisiones patrimoniales, derechos y relaciones de consumo.',
       'Trabaja también en jubilaciones y pensiones, y en el seguimiento de trámites administrativos y judiciales, con una mirada atenta al recorrido de cada persona y organización.',
@@ -56,7 +58,11 @@ export const SOCIOS: Record<Responsable, Socio> = {
 
 export const EMAIL_ESTUDIO = 'estudiojapp@gmail.com';
 
-/** Responsable por defecto para el botón "otra consulta" / general. TODO: confirmar con los socios si prefieren otro criterio. */
+/**
+ * Responsable por defecto (server-side, antes de que corra JS) para el botón "otra consulta" /
+ * general. En el cliente, `area-search.js`/el picker alternan este valor por dispositivo
+ * (localStorage) para repartir parejo entre Gisele y Diego — ver WhatsAppPicker.astro.
+ */
 export const RESPONSABLE_GENERAL: Responsable = 'diego';
 
 export interface FaqItem {
@@ -85,9 +91,15 @@ export interface TemaWhatsApp {
   slug: string;
   etiqueta: string;
   responsable: Responsable;
-  mensaje: string;
+  /**
+   * Frase que completa "Buen día {Nombre}; quisiera hacer una consulta sobre {temaFrase}."
+   * Si no hay (p. ej. TEMA_OTRA_CONSULTA), el mensaje queda genérico sin tema — ver mensajeTema().
+   */
+  temaFrase?: string;
   /** Bajada de una línea, honesta y no inventada, para el card de Home y el H1 de la página de área. */
   resumenBreve: string;
+  /** Palabras/sinónimos que una persona podría tipear en el buscador para llegar a este tema. */
+  keywords?: string[];
   /** true = la asignación de responsable todavía no fue confirmada por los socios (default temporal). */
   responsablePendiente?: boolean;
   contenido?: ContenidoArea;
@@ -98,22 +110,25 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     slug: 'jubilaciones',
     etiqueta: 'Jubilaciones',
     responsable: 'gisele',
-    mensaje: 'Hola, quisiera hacer una consulta sobre un trámite de jubilación.',
+    temaFrase: 'un trámite de jubilación',
     resumenBreve: 'Asesoramiento y representación en trámites y reclamos previsionales.',
+    keywords: ['jubilación', 'jubilaciones', 'pami', 'anses', 'aportes', 'retiro', 'pensión', 'moratoria previsional', 'beneficio previsional', 'reajuste de haberes'],
   },
   {
     slug: 'amparos-de-salud',
     etiqueta: 'Amparos de salud',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre un amparo de salud.',
+    temaFrase: 'un amparo de salud',
     resumenBreve: 'Acciones de amparo ante situaciones que requieren tutela judicial urgente en salud.',
+    keywords: ['amparo de salud', 'obra social', 'prepaga', 'medicamento', 'tratamiento médico', 'cobertura médica', 'discapacidad', 'urgencia médica'],
   },
   {
     slug: 'accidentes-de-trabajo',
     etiqueta: 'Accidentes de trabajo',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta por un accidente de trabajo.',
+    temaFrase: 'un accidente de trabajo',
     resumenBreve: 'Asistencia y asesoramiento frente a accidentes de trabajo y enfermedades profesionales.',
+    keywords: ['accidente de trabajo', 'art', 'enfermedad profesional', 'incapacidad laboral', 'accidente in itinere'],
     contenido: {
       problema:
         'Después de un accidente de trabajo o una enfermedad profesional, no siempre queda claro qué cobertura corresponde ni cómo seguir si la ART no reconoce lo que debería.',
@@ -162,11 +177,21 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     },
   },
   {
+    slug: 'accidentes-de-transito',
+    etiqueta: 'Accidentes de tránsito',
+    responsable: 'gisele',
+    temaFrase: 'un accidente de tránsito',
+    resumenBreve: 'Asesoramiento legal ante accidentes de tránsito y sus consecuencias.',
+    keywords: ['accidente de tránsito', 'choque', 'siniestro vial', 'seguro automotor', 'lesiones', 'accidente de auto', 'accidente de moto'],
+    responsablePendiente: true,
+  },
+  {
     slug: 'divorcios',
     etiqueta: 'Divorcios',
     responsable: 'gisele',
-    mensaje: 'Hola, quisiera hacer una consulta sobre un divorcio.',
+    temaFrase: 'un divorcio',
     resumenBreve: 'Acompañamiento legal durante el proceso de divorcio y sus cuestiones vinculadas.',
+    keywords: ['divorcio', 'separación', 'convenio regulador', 'división de bienes', 'alimentos', 'cuidado personal', 'tenencia de hijos'],
     responsablePendiente: true,
     contenido: {
       problema:
@@ -217,15 +242,17 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     slug: 'ciudadanias',
     etiqueta: 'Ciudadanías',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre un trámite de ciudadanía.',
+    temaFrase: 'un trámite de ciudadanía',
     resumenBreve: 'Asistencia en procesos y trámites vinculados con ciudadanía y migración.',
+    keywords: ['ciudadanía', 'ciudadanía italiana', 'ciudadanía española', 'migraciones', 'radicación', 'residencia', 'naturalización', 'pasaporte'],
   },
   {
     slug: 'sucesiones',
     etiqueta: 'Sucesiones',
     responsable: 'gisele',
-    mensaje: 'Hola, quisiera hacer una consulta sobre una sucesión.',
+    temaFrase: 'una sucesión',
     resumenBreve: 'Asesoramiento jurídico para procesos sucesorios y cuestiones relacionadas.',
+    keywords: ['sucesión', 'sucesiones', 'herencia', 'herederos', 'declaratoria de herederos', 'testamento', 'partición de bienes', 'cesión de derechos hereditarios'],
     responsablePendiente: true,
     contenido: {
       problema:
@@ -241,10 +268,12 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
         'Asesoramiento sobre testamentos y sus alcances.',
       ],
       comoTrabaja: [
-        'Relevamos la composición del patrimonio y el grupo de herederos.',
-        'Explicamos las alternativas disponibles (sucesión, cesión con reserva de usufructo, testamento) y sus implicancias.',
-        'Armamos y presentamos la documentación necesaria.',
-        'Acompañamos hasta resolver la situación de los bienes.',
+        'Análisis inicial: relevamos domicilio, vínculos familiares, existencia de testamento, bienes y objetivos.',
+        'Reunimos la documentación necesaria (partidas, títulos, certificados).',
+        'Iniciamos la sucesión ante el juzgado competente y acreditamos el vínculo con el fallecido.',
+        'Gestionamos edictos y oficios cuando el proceso los requiere.',
+        'Tramitamos la declaratoria de herederos o la aprobación del testamento.',
+        'Cerramos el proceso: inscripción registral de los bienes, partición y adjudicación entre los herederos.',
       ],
       documentacionInicial: [
         'Partida de defunción, si ya ocurrió el fallecimiento.',
@@ -268,6 +297,11 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
           respuesta:
             'Apenas sea posible después del fallecimiento, para poder disponer de los bienes (venderlos, cobrar cuentas, etc.). Cuanto antes se ordene la documentación, más simple resulta el trámite.',
         },
+        {
+          pregunta: '¿Qué gastos tiene un proceso sucesorio, además de los honorarios?',
+          respuesta:
+            'Además de los honorarios profesionales, que se acuerdan por escrito desde el inicio, suele haber tasa de justicia (su monto depende del patrimonio y la etapa del proceso), eventuales edictos, certificados registrales sobre los bienes y gastos de inscripción vinculados a la declaratoria o la partición. Los conceptos concretos varían según el patrimonio y las particularidades de cada caso — te los detallamos en la primera consulta.',
+        },
       ],
       relacionados: ['usucapiones-y-tramites-registrales', 'divorcios', 'danos-y-perjuicios'],
     },
@@ -276,30 +310,33 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     slug: 'marcas',
     etiqueta: 'Marcas',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera consultar por el registro de una marca.',
+    temaFrase: 'el registro de una marca',
     resumenBreve: 'Asesoramiento en protección y gestión de activos marcarios.',
+    keywords: ['marca', 'registro de marca', 'inpi', 'propiedad industrial', 'nombre comercial', 'logo'],
   },
   {
     slug: 'patentes',
     etiqueta: 'Patentes',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre una patente.',
+    temaFrase: 'una patente',
     resumenBreve: 'Orientación jurídica para la protección de invenciones.',
+    keywords: ['patente', 'invento', 'invención', 'modelo de utilidad', 'propiedad industrial', 'inpi'],
   },
   {
     slug: 'derecho-de-autor',
     etiqueta: 'Derecho de autor',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre derecho de autor.',
+    temaFrase: 'derecho de autor',
     resumenBreve: 'Orientación jurídica para la protección de creaciones y derechos intelectuales.',
+    keywords: ['derecho de autor', 'propiedad intelectual', 'obra', 'copyright', 'registro de obra'],
   },
   {
     slug: 'derecho-administrativo-y-regulatorio',
     etiqueta: 'Derecho administrativo, regulatorio y relaciones institucionales',
-    responsable: 'diego',
-    mensaje:
-      'Hola, quisiera hacer una consulta sobre un trámite administrativo/regulatorio ante un organismo público.',
+    responsable: 'gisele',
+    temaFrase: 'un trámite administrativo/regulatorio ante un organismo público',
     resumenBreve: 'Procedimientos administrativos, trámites, relaciones institucionales y con organismos públicos y el Estado Nacional.',
+    keywords: ['trámite administrativo', 'organismo público', 'expediente administrativo', 'igj', 'rpi', 'regulatorio', 'relaciones institucionales', 'estado'],
     contenido: {
       problema:
         'Interactuar con la Administración Pública tiene su propia lógica y sus propios tiempos: expedientes, actos administrativos, normativa sectorial y organismos de control. Cuando una persona o una empresa necesita resolver algo frente al Estado, o enfrenta un conflicto regulatorio, esa lógica administrativa pesa tanto como el derecho de fondo.',
@@ -352,8 +389,9 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     slug: 'constitucion-de-sociedades',
     etiqueta: 'Constitución de sociedades',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre la constitución de una sociedad.',
+    temaFrase: 'la constitución de una sociedad',
     resumenBreve: 'Constitución y puesta en marcha de sociedades comerciales.',
+    keywords: ['constituir una sociedad', 'srl', 'sociedad', 'contrato social', 'igj', 'persona jurídica'],
     contenido: {
       problema:
         'Cuando dos o más personas deciden asociarse para desarrollar una actividad comercial, necesitan un marco legal formal que ordene la relación entre los socios y separe el patrimonio del emprendimiento del patrimonio personal.',
@@ -404,45 +442,50 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     slug: 'redaccion-de-contratos',
     etiqueta: 'Redacción de contratos',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre la redacción de un contrato.',
+    temaFrase: 'la redacción de un contrato',
     resumenBreve: 'Redacción y revisión de contratos a medida de cada proyecto o actividad.',
+    keywords: ['contrato', 'redacción de contrato', 'revisión de contrato', 'acuerdo comercial'],
   },
   {
     slug: 'formalizacion-de-proyectos',
     etiqueta: 'Formalización de proyectos',
-    responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre la formalización de un proyecto.',
+    responsable: 'gisele',
+    temaFrase: 'la formalización de un proyecto',
     resumenBreve: 'Estructuración legal de proyectos y emprendimientos desde su inicio.',
+    keywords: ['formalizar un proyecto', 'emprendimiento', 'startup', 'proyecto'],
   },
   {
     slug: 'asesoramiento-a-empresas',
     etiqueta: 'Asesoramiento a empresas',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre asesoramiento legal para una empresa.',
+    temaFrase: 'asesoramiento legal para una empresa',
     resumenBreve: 'Asesoramiento jurídico integral para empresas en su operación diaria.',
+    keywords: ['asesoramiento empresas', 'asesoramiento legal empresarial', 'pyme'],
   },
   {
     slug: 'danos-y-perjuicios',
     etiqueta: 'Daños y perjuicios',
     responsable: 'gisele',
-    mensaje: 'Hola, quisiera hacer una consulta sobre un reclamo por daños y perjuicios.',
+    temaFrase: 'un reclamo por daños y perjuicios',
     resumenBreve: 'Siniestros, responsabilidad civil y evaluación jurídica de contingencias.',
+    keywords: ['daños y perjuicios', 'siniestro', 'responsabilidad civil', 'indemnización'],
   },
   {
     slug: 'acuerdos-de-desvinculacion-laboral',
     etiqueta: 'Acuerdos de desvinculación laboral',
     responsable: 'diego',
-    mensaje: 'Hola, quisiera hacer una consulta sobre un acuerdo de desvinculación laboral.',
+    temaFrase: 'un acuerdo de desvinculación laboral',
     resumenBreve: 'Asesoramos a empleadores en el cierre de vínculos laborales, incluido el personal de casas particulares.',
+    keywords: ['despido', 'desvinculación', 'acuerdo laboral', 'empleada doméstica', 'personal de casas particulares', 'indemnización laboral'],
     responsablePendiente: true,
   },
   {
     slug: 'usucapiones-y-tramites-registrales',
     etiqueta: 'Usucapiones y trámites registrales (RPI)',
     responsable: 'diego',
-    mensaje:
-      'Hola, quisiera hacer una consulta sobre una usucapión / un trámite ante el Registro de la Propiedad Inmueble.',
+    temaFrase: 'una usucapión / un trámite ante el Registro de la Propiedad Inmueble',
     resumenBreve: 'Soluciones registrales sobre inmuebles: usucapiones y trámites ante el Registro de la Propiedad Inmueble.',
+    keywords: ['usucapión', 'prescripción adquisitiva', 'registro de la propiedad inmueble', 'rpi', 'título de propiedad'],
     responsablePendiente: true,
     contenido: {
       problema:
@@ -496,9 +539,29 @@ export const TEMA_OTRA_CONSULTA: TemaWhatsApp = {
   slug: 'otra-consulta',
   etiqueta: 'Otra consulta',
   responsable: RESPONSABLE_GENERAL,
-  mensaje: 'Hola, quisiera hacer una consulta con Estudio Jurídico APP.',
   resumenBreve: 'Para cualquier otra consulta que no encuentres en la lista.',
 };
+
+/** Primer nombre de pila de un socio, para saludos personalizados. */
+export function primerNombre(responsable: Responsable): string {
+  return SOCIOS[responsable].nombre.split(' ')[0];
+}
+
+/**
+ * Mensaje de WhatsApp con saludo personalizado: "Buen día {Nombre}; quisiera hacer una consulta
+ * sobre {tema}." Si el tema no tiene temaFrase (p. ej. "Otra consulta"), queda genérico.
+ */
+export function mensajeTema(tema: TemaWhatsApp): string {
+  const nombre = primerNombre(tema.responsable);
+  return tema.temaFrase
+    ? `Buen día ${nombre}; quisiera hacer una consulta sobre ${tema.temaFrase}.`
+    : `Buen día ${nombre}; quisiera hacer una consulta.`;
+}
+
+/** Mensaje para cuando la persona elige directamente a un socio (sin pasar por un tema). */
+export function mensajePersona(responsable: Responsable): string {
+  return `Buen día ${primerNombre(responsable)}; quisiera hacer una consulta.`;
+}
 
 /** Construye el link wa.me para un socio + mensaje dado. */
 export function waLink(responsable: Responsable, mensaje: string): string {
@@ -509,9 +572,26 @@ export function waLink(responsable: Responsable, mensaje: string): string {
 /** Link directo para un tema del listado (o el fallback "otra consulta"). */
 export function waLinkForTema(slug: string): string {
   const tema = TEMAS_WHATSAPP.find((t) => t.slug === slug) ?? TEMA_OTRA_CONSULTA;
-  return waLink(tema.responsable, tema.mensaje);
+  return waLink(tema.responsable, mensajeTema(tema));
 }
 
 export function getTemaBySlug(slug: string): TemaWhatsApp | undefined {
   return TEMAS_WHATSAPP.find((t) => t.slug === slug);
+}
+
+/** Minúsculas y sin tildes, para comparar texto ingresado por el usuario contra el índice. */
+export function normalizarBusqueda(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[áàâã]/g, 'a')
+    .replace(/[éèê]/g, 'e')
+    .replace(/[íìî]/g, 'i')
+    .replace(/[óòôõ]/g, 'o')
+    .replace(/[úùû]/g, 'u')
+    .replace(/ñ/g, 'n');
+}
+
+/** Texto normalizado (minúsculas, sin tildes) para el buscador de temas por palabra clave. */
+export function searchIndex(tema: TemaWhatsApp): string {
+  return normalizarBusqueda([tema.etiqueta, ...(tema.keywords ?? [])].join(' '));
 }

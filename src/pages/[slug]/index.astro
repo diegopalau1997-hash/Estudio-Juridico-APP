@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { TEMAS_WHATSAPP, type TemaWhatsApp } from '../../lib/whatsapp';
+import { TEMAS_WHATSAPP, mensajeTema, type TemaWhatsApp } from '../../lib/whatsapp';
 
 export function getStaticPaths() {
   return TEMAS_WHATSAPP.map((tema) => ({
@@ -33,7 +33,7 @@ const relacionados = c
       <div class="area__cta">
         <WhatsAppButton
           responsable={tema.responsable}
-          mensaje={tema.mensaje}
+          mensaje={mensajeTema(tema)}
           label={`Consultar por ${tema.etiqueta.toLowerCase()}`}
         />
       </div>
@@ -122,7 +122,7 @@ const relacionados = c
           </div>
           <WhatsAppButton
             responsable={tema.responsable}
-            mensaje={tema.mensaje}
+            mensaje={mensajeTema(tema)}
             label={`Consultar por ${tema.etiqueta.toLowerCase()}`}
             variant="outline-dark"
           />

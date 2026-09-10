@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Logo from '../components/Logo.astro';
 import WhatsAppPicker from '../components/WhatsAppPicker.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { TEMAS_WHATSAPP, SOCIOS } from '../lib/whatsapp';
+import { TEMAS_WHATSAPP, SOCIOS, mensajeTema, mensajePersona, searchIndex } from '../lib/whatsapp';
 import giselePhoto from '../assets/equipo/gisele-paoletti.png';
 import diegoPhoto from '../assets/equipo/diego-palau.jpeg';
 
@@ -45,7 +45,7 @@ const metodologia = [
     </div>
     <div class="container hero__content">
       <span class="eyebrow">Estudio Jurídico APP</span>
-      <h1 class="hero__title">Precisión técnica,<br />estrategia<br />y acompañamiento.</h1>
+      <h1 class="hero__title">Precisión técnica, estrategia y acompañamiento.</h1>
       <p class="hero__desc">
         Asesoramiento y representación legal para procesos judiciales y procedimientos
         administrativos, con seguimiento constante de cada caso.
@@ -71,16 +71,28 @@ const metodologia = [
     <div class="container">
       <span class="eyebrow">Áreas de práctica</span>
       <h2>En qué podemos ayudarte.</h2>
-      <div class="areas-grid">
-        {areasGrid.map((tema) => (
-          <a class="area-card" href={`/${tema.slug}/`}>
-            <div>
-              <span class="area-card__title">{tema.etiqueta}</span>
-              <p class="area-card__resumen">{tema.resumenBreve}</p>
-            </div>
-            <span class="area-card__cta">Ver más →</span>
-          </a>
-        ))}
+      <div class="areas-search" data-search-scope>
+        <input
+          type="search"
+          class="areas-search__input"
+          data-area-search-input
+          placeholder="Buscá por palabra clave: jubilación, marca, divorcio..."
+          aria-label="Buscar área de práctica por palabra clave"
+        />
+        <div class="areas-grid">
+          {areasGrid.map((tema) => (
+            <a class="area-card" href={`/${tema.slug}/`} data-searchable data-search-index={searchIndex(tema)}>
+              <div>
+                <span class="area-card__title">{tema.etiqueta}</span>
+                <p class="area-card__resumen">{tema.resumenBreve}</p>
+              </div>
+              <span class="area-card__cta">Ver más →</span>
+            </a>
+          ))}
+        </div>
+        <p class="areas-search__empty" data-search-empty hidden>
+          No encontramos una coincidencia exacta. Contanos tu consulta y te decimos cómo podemos ayudarte.
+        </p>
       </div>
     </div>
   </section>
@@ -100,7 +112,7 @@ const metodologia = [
       <div class="destacada__cta">
         <WhatsAppButton
           responsable={destacada.responsable}
-          mensaje={destacada.mensaje}
+          mensaje={mensajeTema(destacada)}
           label="Consultar sobre este tema"
           variant="outline-dark"
         />
@@ -143,7 +155,7 @@ const metodologia = [
           <p class="equipo-card__rol">Socia</p>
           <WhatsAppButton
             responsable="gisele"
-            mensaje="Hola, quisiera hacer una consulta."
+            mensaje={mensajePersona('gisele')}
             label="Escribir a Gisele"
             variant="outline-light"
           />
@@ -154,7 +166,7 @@ const metodologia = [
           <p class="equipo-card__rol">Socio</p>
           <WhatsAppButton
             responsable="diego"
-            mensaje="Hola, quisiera hacer una consulta."
+            mensaje={mensajePersona('diego')}
             label="Escribir a Diego"
             variant="outline-light"
           />
@@ -196,7 +208,8 @@ const metodologia = [
 <style>
   .hero {
     position: relative;
-    padding-block: clamp(4rem, 12vh, 8rem);
+    padding-top: clamp(3rem, 9vh, 6rem);
+    padding-bottom: clamp(4rem, 10vh, 7rem);
   }
   .hero__eagle {
     position: absolute;
@@ -213,9 +226,10 @@ const metodologia = [
   }
   .hero__content {
     position: relative;
-    max-width: 640px;
+    max-width: 800px;
   }
   .hero__title {
+    font-size: clamp(2rem, 3.3vw, 3.1rem);
     margin-bottom: 1.1rem;
   }
   .hero__desc {
@@ -256,13 +270,38 @@ const metodologia = [
   }
   .intro__body p {
     color: var(--text-body);
+    text-align: justify;
   }
 
+  .areas-search {
+    margin-top: 2rem;
+  }
+  .areas-search__input {
+    width: 100%;
+    max-width: 26rem;
+    display: block;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--text-body);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+  }
+  .areas-search__input:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+  .areas-search__empty {
+    margin: 1.25rem 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
   .areas-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border: 1px solid var(--border-subtle);
-    margin-top: 2rem;
   }
   .area-card {
     display: flex;
