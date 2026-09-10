@@ -1,12 +1,19 @@
 ---
-import { SOCIOS, TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA, waLink } from '../lib/whatsapp';
+import { SOCIOS, TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA, waLink, type Responsable } from '../lib/whatsapp';
 
 interface Props {
   variant?: 'inline' | 'floating';
   label?: string;
+  /** 'temas' = elegir por área (default). 'personas' = elegir directo entre Gisele o Diego,
+   * sin pasar por temas — pensado para el botón principal del Home. */
+  mode?: 'temas' | 'personas';
 }
-const { variant = 'inline', label = 'Consultar por WhatsApp' } = Astro.props;
-const todos = [...TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA];
+const { variant = 'inline', label = 'Consultar por WhatsApp', mode = 'temas' } = Astro.props;
+
+const personas: { responsable: Responsable; mensaje: string }[] = [
+  { responsable: 'gisele', mensaje: `Hola ${SOCIOS.gisele.nombre.split(' ')[0]}, quisiera hacer una consulta.` },
+  { responsable: 'diego', mensaje: `Hola ${SOCIOS.diego.nombre.split(' ')[0]}, quisiera hacer una consulta.` },
+];
 ---
 
 <details class:list={['wa-picker', `wa-picker--${variant}`]}>
@@ -15,22 +22,40 @@ const todos = [...TEMAS_WHATSAPP, TEMA_OTRA_CONSULTA];
     <span class="wa-picker__label">{label}</span>
   </summary>
   <div class="wa-picker__panel" role="menu">
-    <p class="wa-picker__hint">Elegí el tema de tu consulta:</p>
-    <ul>
-      {TEMAS_WHATSAPP.map((tema) => (
-        <li>
-          <a href={waLink(tema.responsable, tema.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
-            <span>{tema.etiqueta}</span>
-            <span class="wa-picker__socio">{SOCIOS[tema.responsable].nombre.split(' ')[0]}</span>
-          </a>
-        </li>
-      ))}
-      <li class="wa-picker__fallback">
-        <a href={waLink(TEMA_OTRA_CONSULTA.responsable, TEMA_OTRA_CONSULTA.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
-          <span>{TEMA_OTRA_CONSULTA.etiqueta}</span>
-        </a>
-      </li>
-    </ul>
+    {mode === 'personas' ? (
+      <>
+        <p class="wa-picker__hint">Elegí con quién querés hablar:</p>
+        <ul>
+          {personas.map((p) => (
+            <li>
+              <a href={waLink(p.responsable, p.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
+                <span>{SOCIOS[p.responsable].nombre}</span>
+                <span class="wa-picker__socio">{SOCIOS[p.responsable].rol}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <>
+        <p class="wa-picker__hint">Elegí el tema de tu consulta:</p>
+        <ul>
+          {TEMAS_WHATSAPP.map((tema) => (
+            <li>
+              <a href={waLink(tema.responsable, tema.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
+                <span>{tema.etiqueta}</span>
+                <span class="wa-picker__socio">{SOCIOS[tema.responsable].nombre.split(' ')[0]}</span>
+              </a>
+            </li>
+          ))}
+          <li class="wa-picker__fallback">
+            <a href={waLink(TEMA_OTRA_CONSULTA.responsable, TEMA_OTRA_CONSULTA.mensaje)} target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span>{TEMA_OTRA_CONSULTA.etiqueta}</span>
+            </a>
+          </li>
+        </ul>
+      </>
+    )}
   </div>
 </details>
 

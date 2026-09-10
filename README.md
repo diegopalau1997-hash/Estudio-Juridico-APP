@@ -1,6 +1,6 @@
 # Estudio Jurídico APP — sitio web
 
-Sitio institucional de Estudio Jurídico APP (Abogados Paoletti y Palau), construido con
+Sitio institucional de Estudio Jurídico APP (Abogados Paoletti & Palau), construido con
 [Astro](https://astro.build) como sitio estático. Sin backend, sin base de datos: HTML/CSS
 generados en build, con el mínimo JS posible.
 

@@ -34,7 +34,7 @@ const metodologia = [
 ---
 
 <BaseLayout
-  title="Estudio Jurídico APP — Abogados Paoletti y Palau"
+  title="Estudio Jurídico APP — Abogados Paoletti & Palau"
   description="Asesoramiento y representación legal con precisión técnica, estrategia y seguimiento constante. Jubilaciones, amparos de salud, propiedad intelectual, derecho administrativo y regulatorio, y más."
   path="/"
 >
@@ -51,7 +51,7 @@ const metodologia = [
         administrativos, con seguimiento constante de cada caso.
       </p>
       <div class="hero__actions">
-        <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" />
+        <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" mode="personas" />
         <a class="btn btn--outline-dark" href="/el-estudio/">Conocer el estudio</a>
       </div>
     </div>
@@ -63,6 +63,49 @@ const metodologia = [
       {valores.map((v) => (
         <span class="valores__item">{v}</span>
       ))}
+    </div>
+  </section>
+
+  <!-- C. ÁREAS DE PRÁCTICA -->
+  <section class="section section--beige" id="areas">
+    <div class="container">
+      <span class="eyebrow">Áreas de práctica</span>
+      <h2>En qué podemos ayudarte.</h2>
+      <div class="areas-grid">
+        {areasGrid.map((tema) => (
+          <a class="area-card" href={`/${tema.slug}/`}>
+            <div>
+              <span class="area-card__title">{tema.etiqueta}</span>
+              <p class="area-card__resumen">{tema.resumenBreve}</p>
+            </div>
+            <span class="area-card__cta">Ver más →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- D. DERECHO ADMINISTRATIVO, REGULATORIO Y RELACIONES INSTITUCIONALES — destacado -->
+  <section class="section destacada section--dark">
+    <div class="container destacada__grid">
+      <div>
+        <span class="eyebrow">Área destacada</span>
+        <h2>{destacada.etiqueta}.</h2>
+        <p>
+          Trabajamos de forma habitual en procedimientos administrativos, trámites ante
+          organismos públicos y relaciones institucionales con el Estado Nacional, con foco en
+          el conocimiento técnico de cada procedimiento y en la correcta ejecución de cada etapa.
+        </p>
+      </div>
+      <div class="destacada__cta">
+        <WhatsAppButton
+          responsable={destacada.responsable}
+          mensaje={destacada.mensaje}
+          label="Consultar sobre este tema"
+          variant="outline-dark"
+        />
+        <a class="destacada__link" href={`/${destacada.slug}/`}>Ver la página completa →</a>
+      </div>
     </div>
   </section>
 
@@ -88,54 +131,11 @@ const metodologia = [
     </div>
   </section>
 
-  <!-- C. ÁREAS DE PRÁCTICA -->
-  <section class="section section--beige" id="areas">
-    <div class="container">
-      <span class="eyebrow">Áreas de práctica</span>
-      <h2>En qué podemos ayudarte.</h2>
-      <div class="areas-grid">
-        {areasGrid.map((tema) => (
-          <a class="area-card" href={`/${tema.slug}/`}>
-            <div>
-              <span class="area-card__title">{tema.etiqueta}</span>
-              <p class="area-card__resumen">{tema.resumenBreve}</p>
-            </div>
-            <span class="area-card__cta">Ver más →</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- D. DERECHO ADMINISTRATIVO Y REGULATORIO — destacado -->
-  <section class="section destacada section--dark">
-    <div class="container destacada__grid">
-      <div>
-        <span class="eyebrow">Área destacada</span>
-        <h2>Derecho administrativo y regulatorio.</h2>
-        <p>
-          Trabajamos de forma habitual en procedimientos administrativos, trámites ante
-          organismos públicos y relaciones con el Estado Nacional, con foco en el conocimiento
-          técnico de cada procedimiento y en la correcta ejecución de cada etapa.
-        </p>
-      </div>
-      <div class="destacada__cta">
-        <WhatsAppButton
-          responsable={destacada.responsable}
-          mensaje={destacada.mensaje}
-          label="Consultar sobre este tema"
-          variant="outline-dark"
-        />
-        <a class="destacada__link" href={`/${destacada.slug}/`}>Ver la página completa →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- E. EQUIPO -->
   <section class="section" id="equipo">
     <div class="container">
       <span class="eyebrow">Equipo</span>
-      <h2>Paoletti y Palau.</h2>
+      <h2>Paoletti &amp; Palau.</h2>
       <div class="equipo-grid">
         <article class="equipo-card">
           <Image src={giselePhoto} alt={SOCIOS.gisele.nombre} class="equipo-card__foto" width={160} height={200} />
@@ -188,7 +188,7 @@ const metodologia = [
         <h2>¿Necesitás asesoramiento?</h2>
         <p>Contanos brevemente tu situación y coordinamos una consulta.</p>
       </div>
-      <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" />
+      <WhatsAppPicker variant="inline" label="Consultar por WhatsApp" mode="personas" />
     </div>
   </section>
 </BaseLayout>

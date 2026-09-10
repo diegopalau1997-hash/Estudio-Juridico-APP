@@ -13,6 +13,7 @@ const nav = [
 ];
 
 const currentPath = new URL(Astro.request.url).pathname;
+const waMode = currentPath === '/' ? 'personas' : 'temas';
 ---
 
 <header class="site-header">
@@ -37,7 +38,7 @@ const currentPath = new URL(Astro.request.url).pathname;
         ))}
       </ul>
       <div class="site-nav__cta">
-        <WhatsAppPicker variant="inline" label="Consultar" />
+        <WhatsAppPicker variant="inline" label="Consultar" mode={waMode} />
       </div>
     </nav>
   </div>

@@ -14,6 +14,7 @@ const { title, description, path } = Astro.props;
 const siteUrl = 'https://www.estudiojapp.com.ar';
 const canonical = `${siteUrl}${path}`;
 const fullTitle = `${title} | Estudio Jurídico APP`;
+const waMode = path === '/' ? 'personas' : 'temas';
 ---
 
 <!doctype html>
@@ -47,6 +48,6 @@ const fullTitle = `${title} | Estudio Jurídico APP`;
       <slot />
     </main>
     <Footer />
-    <WhatsAppPicker variant="floating" label="Consultar por WhatsApp" />
+    <WhatsAppPicker variant="floating" label="Consultar por WhatsApp" mode={waMode} />
   </body>
 </html>
