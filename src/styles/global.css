@@ -62,6 +62,10 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* Guarda contra scroll horizontal (p. ej. el águila decorativa del hero que sangra
+     levemente fuera del viewport) sin tener que clipear ninguna sección individual —
+     así los desplegables (WhatsApp picker) pueden overflowear verticalmente sin cortarse. */
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {

@@ -180,6 +180,14 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     resumenBreve: 'Siniestros, responsabilidad civil y evaluación jurídica de contingencias.',
   },
   {
+    slug: 'acuerdos-de-desvinculacion-laboral',
+    etiqueta: 'Acuerdos de desvinculación laboral',
+    responsable: 'diego',
+    mensaje: 'Hola, quisiera hacer una consulta sobre un acuerdo de desvinculación laboral.',
+    resumenBreve: 'Asesoramos a empleadores en el cierre de vínculos laborales, incluido el personal de casas particulares.',
+    responsablePendiente: true,
+  },
+  {
     slug: 'usucapiones-y-tramites-registrales',
     etiqueta: 'Usucapiones y trámites registrales (RPI)',
     responsable: 'diego',

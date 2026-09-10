@@ -10,8 +10,10 @@ interface Props {
   path: string;
   temaSlugs: string[];
   nota?: string;
+  /** Frase corta para destacar en grande debajo del intro (p. ej. una credencial fuerte). */
+  destacado?: string;
 }
-const { eyebrow, title, intro, description, path, temaSlugs, nota } = Astro.props;
+const { eyebrow, title, intro, description, path, temaSlugs, nota, destacado } = Astro.props;
 const temas = temaSlugs.map((slug) => TEMAS_WHATSAPP.find((t) => t.slug === slug)!).filter(Boolean);
 ---
 
@@ -21,6 +23,8 @@ const temas = temaSlugs.map((slug) => TEMAS_WHATSAPP.find((t) => t.slug === slug
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
       <p class="lead">{intro}</p>
+
+      {destacado && <p class="cat-destacado">{destacado}</p>}
 
       <div class="cat-grid">
         {temas.map((tema) => (
@@ -40,7 +44,14 @@ const temas = temaSlugs.map((slug) => TEMAS_WHATSAPP.find((t) => t.slug === slug
 <style>
   .lead {
     max-width: 65ch;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .cat-destacado {
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: var(--color-navy);
+    margin: 0 0 2.5rem;
   }
   .cat-grid {
     display: grid;
