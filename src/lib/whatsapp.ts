@@ -662,7 +662,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
       problema:
         'Interactuar con la Administración Pública tiene su propia lógica y sus propios tiempos: expedientes, actos administrativos, normativa sectorial y organismos de control. Cuando una persona o una empresa necesita resolver algo frente al Estado, o enfrenta un conflicto regulatorio, esa lógica administrativa pesa tanto como el derecho de fondo.',
       situaciones: [
-        'Trámites y gestiones ante organismos de la Administración Pública Nacional y provincial.',
+        'Trámites y gestiones ante organismos de la Administración Pública Nacional, provincial y municipal.',
         'Análisis del marco normativo y regulatorio aplicable a un proyecto, una actividad o una decisión empresarial.',
         'Cuestiones regulatorias en sectores con fuerte intervención estatal, como el sistema de salud y el sistema de transporte.',
         'Gestiones ante organismos de contralor y relaciones institucionales con reparticiones públicas.',
