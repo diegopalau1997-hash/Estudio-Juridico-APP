@@ -18,9 +18,24 @@ const c = tema.contenido;
 const relacionados = c
   ? c.relacionados.map((slug) => TEMAS_WHATSAPP.find((t) => t.slug === slug)).filter((t): t is TemaWhatsApp => !!t)
   : [];
+
+/** JSON-LD FAQPage: ayuda a que buscadores y asistentes de IA lean las preguntas frecuentes
+    como respuestas estructuradas, no solo como texto suelto. */
+const faqSchema = c
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: c.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.pregunta,
+        acceptedAnswer: { '@type': 'Answer', text: item.respuesta },
+      })),
+    }
+  : null;
 ---
 
-<BaseLayout title={tema.etiqueta} description={tema.resumenBreve} path={`/${tema.slug}/`}>
+<BaseLayout title={tema.etiqueta} description={tema.resumenBreve} path={`/${tema.slug}/`} keywords={tema.keywords}>
+  {faqSchema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <section class="section area">
     <div class="container">
       <nav class="breadcrumb" aria-label="Miga de pan">

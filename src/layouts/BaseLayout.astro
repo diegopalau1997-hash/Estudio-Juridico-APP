@@ -9,8 +9,10 @@ interface Props {
   description: string;
   /** Ruta canónica sin dominio, p. ej. "/equipo/". */
   path: string;
+  /** Palabras clave del área (búsquedas reales de Google/Ads e IA). Opcional. */
+  keywords?: string[];
 }
-const { title, description, path } = Astro.props;
+const { title, description, path, keywords } = Astro.props;
 /** Propiedad GA4 "Estudio Jurídico APP - sitio web" (analytics.google.com). No es secreto. */
 const GA4_MEASUREMENT_ID = 'G-M3RLVVCEPP';
 const siteUrl = 'https://www.estudiojapp.com.ar';
@@ -26,6 +28,7 @@ const waMode = path === '/' ? 'personas' : 'temas';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <link rel="canonical" href={canonical} />
     <meta name="robots" content="index, follow" />
 
