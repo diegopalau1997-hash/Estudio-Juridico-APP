@@ -26,8 +26,8 @@ interface Socio {
 export const SOCIOS: Record<Responsable, Socio> = {
   gisele: {
     nombre: 'Gisele Paoletti',
-    numeroVisible: '+54 9 11 3628-5550',
-    numeroWa: '5491136285550',
+    numeroVisible: '+54 9 11 7236-2504',
+    numeroWa: '5491172362504',
     email: 'giselepaoletti@gmail.com',
     rol: 'Socia',
     formacion: ['Abogada (UBA)', 'Magíster en Administración y Políticas Públicas (UDESA)'],
@@ -39,8 +39,8 @@ export const SOCIOS: Record<Responsable, Socio> = {
   },
   diego: {
     nombre: 'Diego Palau',
-    numeroVisible: '+54 11 5464-3910',
-    numeroWa: '5491154643910',
+    numeroVisible: '+54 9 11 7236-2504',
+    numeroWa: '5491172362504',
     email: 'diego.palau1997@gmail.com',
     rol: 'Socio',
     formacion: [
