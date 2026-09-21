@@ -705,44 +705,52 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     slug: 'derecho-administrativo-y-regulatorio',
     etiqueta: 'Derecho administrativo, regulatorio y relaciones institucionales',
     responsable: 'gisele',
-    temaFrase: 'un trámite administrativo o regulatorio',
+    temaFrase: 'un trámite administrativo/regulatorio ante un organismo público',
     resumenBreve: 'Procedimientos administrativos, trámites y relaciones institucionales.',
-    keywords: ['trámite administrativo', 'expediente administrativo', 'regulatorio', 'relaciones institucionales'],
+    keywords: ['trámite administrativo', 'organismo público', 'expediente administrativo', 'igj', 'rpi', 'regulatorio', 'relaciones institucionales', 'estado'],
     contenido: {
       problema:
-        'Un trámite o conflicto administrativo —expedientes, actos administrativos, normativa sectorial, recursos y descargos— tiene una lógica y tiempos propios que conviene conocer antes de avanzar. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, gestiona el expediente hasta su resolución.',
+        'Un trámite o conflicto frente a la Administración Pública Nacional, provincial o municipal —expedientes, actos administrativos, normativa sectorial, recursos y descargos— tiene una lógica y tiempos propios que conviene conocer antes de avanzar. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, gestiona el expediente hasta su resolución.',
       situaciones: [
-        'Trámites y expedientes administrativos que requieren asesoramiento técnico y seguimiento.',
+        'Trámites y gestiones ante organismos de la Administración Pública Nacional, provincial y municipal.',
         'Análisis del marco normativo y regulatorio aplicable a un proyecto, una actividad o una decisión empresarial.',
-        'Cuestiones regulatorias en sectores como el sistema de salud y el sistema de transporte.',
+        'Cuestiones regulatorias en sectores con fuerte intervención estatal, como el sistema de salud y el sistema de transporte.',
+        'Gestiones ante organismos de contralor.',
+        'Trámites registrales ante la Inspección General de Justicia (IGJ) y el Registro de la Propiedad Inmueble (RPI).',
       ],
       servicios: [
         'Asesoramiento en procedimientos administrativos y análisis de riesgo regulatorio.',
         'Seguimiento y gestión de expedientes administrativos hasta su resolución.',
         'Elaboración de presentaciones, descargos y recursos administrativos.',
+        'Trámites registrales ante IGJ y RPI.',
         'Relaciones institucionales.',
       ],
       comoTrabaja: [
-        'Relevamos el expediente o la situación concreta.',
+        'Relevamos el expediente o la situación concreta y el organismo involucrado.',
         'Analizamos la normativa aplicable y el estado real del trámite o conflicto.',
-        'Definimos la estrategia y los pasos a seguir.',
+        'Definimos la estrategia y los pasos frente al organismo correspondiente.',
         'Hacemos seguimiento del expediente hasta su resolución, informando cada novedad.',
       ],
       documentacionInicial: [
-        'Toda notificación, cédula o resolución recibida en el marco del trámite.',
+        'Toda notificación, cédula o resolución recibida del organismo involucrado.',
         'Número de expediente o trámite, si ya existe uno iniciado.',
         'Documentación que acredite la situación a resolver (contratos, habilitaciones, constancias).',
       ],
       faq: [
         {
-          pregunta: '¿Cuánto tarda un trámite administrativo?',
+          pregunta: '¿Trabajan con trámites ante el Estado Nacional?',
           respuesta:
-            'Depende del tipo de trámite y de su complejidad — no hay un plazo único. En la primera consulta te damos una estimación más precisa según el caso.',
+            'Sí, gestionamos trámites administrativos y regulatorios ante distintos organismos, incluidos los registros de IGJ y RPI.',
         },
         {
-          pregunta: '¿Pueden representarme en un conflicto administrativo ya iniciado?',
+          pregunta: '¿Cuánto tarda un trámite administrativo?',
           respuesta:
-            'Sí, podemos tomar un expediente en curso. Contanos en qué instancia está para evaluar cómo seguir.',
+            'Depende del organismo y del tipo de expediente — no hay un plazo único. En la primera consulta te damos una estimación realista según el caso.',
+        },
+        {
+          pregunta: '¿Pueden representarme frente a un organismo público en un conflicto ya iniciado?',
+          respuesta:
+            'Sí, podemos tomar un expediente en curso. Contanos en qué instancia está y el organismo involucrado para evaluar cómo seguir.',
         },
       ],
       relacionados: ['constitucion-de-sociedades', 'usucapiones-y-tramites-registrales', 'asesoramiento-a-empresas'],
