@@ -33,7 +33,7 @@ export const SOCIOS: Record<Responsable, Socio> = {
     formacion: ['Abogada (UBA)', 'Magíster en Administración y Políticas Públicas (UDESA)'],
     matricula: 'Tº 121 Fº 345 C.P.A.C.F.',
     bio: [
-      'Aporta una visión integral, técnica y sensible que se adapta a cada contexto, con experiencia en asesoramiento jurídico y gestión pública, acompañando procesos vinculados a decisiones patrimoniales, derechos y relaciones de consumo.',
+      'Aporta una visión integral, técnica y sensible que se adapta a cada contexto, con experiencia en asesoramiento jurídico, acompañando procesos vinculados a decisiones patrimoniales, derechos y relaciones de consumo.',
       'Trabaja también en jubilaciones y pensiones, y en el seguimiento de trámites administrativos y judiciales, con una mirada atenta al recorrido de cada persona y organización.',
     ],
   },
