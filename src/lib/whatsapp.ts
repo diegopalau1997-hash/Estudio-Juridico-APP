@@ -133,7 +133,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     ],
     contenido: {
       problema:
-        'Llegar a la jubilación, o descubrir que el beneficio otorgado no refleja los aportes reales, son situaciones que conviene resolver con asesoramiento previsional específico — tanto para iniciar el trámite como para cuestionar lo ya otorgado.',
+        'Un trámite de jubilación es el proceso ante ANSES para obtener el beneficio previsional que corresponde según los aportes realizados; un reajuste de haberes es el reclamo para corregir un beneficio ya otorgado que no refleja esos aportes. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, analiza la situación previsional y representa al interesado en ambos casos.',
       situaciones: [
         'Personas en edad de jubilarse que no completan los años de aporte exigidos (moratoria previsional / prestación por edad avanzada).',
         'Jubilados que consideran que su haber fue mal calculado o quedó desactualizado (reajuste de haberes).',
@@ -220,7 +220,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     ],
     contenido: {
       problema:
-        'Cuando una obra social o prepaga niega o demora un tratamiento, una cirugía o la provisión de un medicamento, la vía judicial de amparo puede ser la manera de garantizar en tiempo útil un derecho a la salud que no admite demoras.',
+        'Un amparo de salud es la acción judicial para obligar a una obra social o prepaga a cubrir un tratamiento, medicamento o cirugía que negó o demoró, incluyendo la solicitud de medidas cautelares urgentes. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, evalúa cada caso y presenta la acción cuando corresponde.',
       situaciones: [
         'Negativa o demora de una prepaga u obra social en cubrir un tratamiento, medicamento o prestación.',
         'Discapacidad: negativa a cubrir prestaciones previstas por la normativa vigente.',
@@ -286,7 +286,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['accidente de trabajo', 'art', 'enfermedad profesional', 'incapacidad laboral', 'accidente in itinere'],
     contenido: {
       problema:
-        'Después de un accidente de trabajo o una enfermedad profesional, no siempre queda claro qué cobertura corresponde ni cómo seguir si la ART no reconoce lo que debería.',
+        'Un accidente de trabajo, incluido el que ocurre en el trayecto al trabajo, y las enfermedades profesionales están cubiertos por el sistema de riesgos del trabajo, que la ART correspondiente debe reconocer. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, asesora y representa cuando la ART no reconoce lo que corresponde.',
       situaciones: [
         'Accidentes de trabajo, incluidos los accidentes in itínere (en el trayecto entre el domicilio y el trabajo).',
         'Enfermedades profesionales derivadas de la actividad laboral.',
@@ -341,7 +341,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsablePendiente: true,
     contenido: {
       problema:
-        'Un accidente de tránsito puede dejar secuelas físicas, daños materiales y gastos que no siempre son reconocidos espontáneamente por el seguro o la contraparte — reclamar lo que corresponde requiere ordenar la prueba desde el primer momento.',
+        'Ante un accidente de tránsito con lesiones o daños materiales, corresponde reclamar a la aseguradora propia, a la de la contraparte o al responsable del hecho, sin obligación de aceptar un monto que resulte insuficiente. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, evalúa el caso y lleva adelante ese reclamo.',
       situaciones: [
         'Choques o siniestros viales con lesiones a las personas involucradas.',
         'Daños materiales al vehículo no reconocidos, o reconocidos parcialmente, por la aseguradora.',
@@ -393,7 +393,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsablePendiente: true,
     contenido: {
       problema:
-        'Un divorcio implica tanto la decisión de separarse como, en la mayoría de los casos, resolver la situación de los bienes en común y de los hijos, si los hay. Son decisiones que conviene tomar con información clara sobre las opciones y los tiempos.',
+        'En Argentina, el divorcio puede pedirse por decisión de uno solo de los cónyuges, sin necesidad de acuerdo con la otra parte, y puede incluir la división de bienes en común y las cuestiones sobre los hijos. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, acompaña todo el proceso.',
       situaciones: [
         'Parejas que deciden separarse, de común acuerdo o por decisión de una sola de las partes.',
         'Necesidad de resolver la división de bienes en común.',
@@ -445,7 +445,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['ciudadanía', 'ciudadanía italiana', 'ciudadanía española', 'migraciones', 'radicación', 'residencia', 'naturalización', 'pasaporte'],
     contenido: {
       problema:
-        'Los trámites de ciudadanía por opción o naturalización y los procesos migratorios tienen requisitos y tiempos específicos según el país y la vía elegida, que conviene conocer antes de empezar para evitar demoras evitables.',
+        'Un trámite de ciudadanía por opción, descendencia o naturalización, o un trámite migratorio de radicación o residencia, tiene requisitos y tiempos distintos según el país y la vía elegida. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, ordena la documentación y hace el seguimiento hasta la resolución.',
       situaciones: [
         'Descendientes de italianos, españoles u otras nacionalidades que quieren tramitar la ciudadanía por vía consular o judicial.',
         'Personas que necesitan resolver su situación migratoria en Argentina (radicación, residencia).',
@@ -498,7 +498,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsablePendiente: true,
     contenido: {
       problema:
-        'Cuando fallece un familiar, o incluso antes, surge la necesidad de organizar cómo se transmite su patrimonio a los herederos. Hacerlo con información clara evita conflictos familiares y simplifica los trámites.',
+        'Cuando fallece un familiar, la sucesión es el proceso judicial para acreditar quiénes son los herederos y transmitirles el patrimonio; también puede organizarse en vida, por ejemplo mediante una cesión con reserva de usufructo. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, tramita el proceso completo.',
       situaciones: [
         'Fallecimiento de un familiar y necesidad de iniciar la sucesión.',
         'Personas que quieren organizar en vida cómo se va a repartir su patrimonio.',
@@ -557,7 +557,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['marca', 'registro de marca', 'inpi', 'propiedad industrial', 'nombre comercial', 'logo'],
     contenido: {
       problema:
-        'Registrar una marca es la manera de asegurar que un nombre, logo o signo distintivo no pueda ser usado por otro y de defenderlo frente a terceros — sin registro, la protección legal es mucho más débil.',
+        'Registrar una marca ante el INPI es lo que permite impedir que un tercero use el mismo nombre, logo o signo distintivo, y defenderlo frente a usos no autorizados; el registro dura diez años y es renovable. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, realiza la búsqueda de antecedentes y todo el trámite.',
       situaciones: [
         'Emprendimientos o empresas que lanzan un nombre, logo o signo distintivo y quieren protegerlo.',
         'Marcas ya registradas que enfrentan una oposición de un tercero, o que necesitan oponerse a la de otro.',
@@ -608,7 +608,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['patente', 'invento', 'invención', 'modelo de utilidad', 'propiedad industrial', 'inpi'],
     contenido: {
       problema:
-        'Una invención sin protección puede ser reproducida libremente por terceros — patentar, o proteger como modelo de utilidad, es lo que permite explotar en exclusiva un desarrollo técnico.',
+        'Patentar una invención, o protegerla como modelo de utilidad, es lo que permite explotarla en exclusiva ante el INPI; sin ese registro, un desarrollo técnico puede ser reproducido libremente por terceros. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, evalúa la patentabilidad y lleva adelante la solicitud.',
       situaciones: [
         'Inventores o empresas con un desarrollo técnico nuevo que quieren protegerlo antes de darlo a conocer.',
         'Dudas sobre si un desarrollo es patentable o corresponde a un modelo de utilidad.',
@@ -659,7 +659,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['derecho de autor', 'propiedad intelectual', 'obra', 'copyright', 'registro de obra'],
     contenido: {
       problema:
-        'Una obra literaria, artística, de software o de otro tipo está protegida por derecho de autor desde su creación, pero registrarla facilita probar la autoría y la fecha de creación frente a un uso no autorizado.',
+        'Una obra literaria, artística, de software o de otro tipo está protegida por derecho de autor desde que se crea; registrarla ante la Dirección Nacional del Derecho de Autor facilita probar la autoría y la fecha. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, gestiona ese registro y actúa frente a usos no autorizados.',
       situaciones: [
         'Autores, artistas o desarrolladores que quieren registrar formalmente una obra.',
         'Uso no autorizado de una obra por parte de un tercero.',
@@ -710,7 +710,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['trámite administrativo', 'organismo público', 'expediente administrativo', 'igj', 'rpi', 'regulatorio', 'relaciones institucionales', 'estado'],
     contenido: {
       problema:
-        'Interactuar con la Administración Pública tiene su propia lógica y sus propios tiempos: expedientes, actos administrativos, normativa sectorial y organismos de control. Cuando una persona o una empresa necesita resolver algo frente al Estado, o enfrenta un conflicto regulatorio, esa lógica administrativa pesa tanto como el derecho de fondo.',
+        'Un trámite o conflicto frente a la Administración Pública Nacional, provincial o municipal —expedientes, actos administrativos, normativa sectorial— tiene una lógica y tiempos propios que conviene conocer para resolverlo. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, gestiona el expediente hasta su resolución.',
       situaciones: [
         'Trámites y gestiones ante organismos de la Administración Pública Nacional, provincial y municipal.',
         'Análisis del marco normativo y regulatorio aplicable a un proyecto, una actividad o una decisión empresarial.',
@@ -765,7 +765,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['constituir una sociedad', 'srl', 'sociedad', 'contrato social', 'igj', 'persona jurídica'],
     contenido: {
       problema:
-        'Cuando dos o más personas deciden asociarse para desarrollar una actividad comercial, necesitan un marco legal formal que ordene la relación entre los socios y separe el patrimonio del emprendimiento del patrimonio personal.',
+        'Constituir una sociedad —por ejemplo, una SRL— da un marco legal formal a un proyecto entre dos o más personas y separa el patrimonio de la actividad del patrimonio personal de cada socio. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, redacta el contrato social y realiza la gestión registral completa.',
       situaciones: [
         'Un proyecto o emprendimiento que empieza a operar y necesita un marco societario formal.',
         'Socios que quieren dejar por escrito, desde el inicio, las reglas de la sociedad.',
@@ -818,7 +818,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['contrato', 'redacción de contrato', 'revisión de contrato', 'acuerdo comercial'],
     contenido: {
       problema:
-        'Un contrato mal redactado, o directamente inexistente, suele ser el origen de conflictos que podrían evitarse dejando por escrito, desde el inicio, lo que cada parte espera y qué pasa si algo no se cumple.',
+        'Un contrato mal redactado, o inexistente, suele originar conflictos que se evitan dejando por escrito, desde el inicio, lo que cada parte espera y qué ocurre si algo no se cumple. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, redacta y revisa contratos a medida de cada acuerdo.',
       situaciones: [
         'Acuerdos comerciales o de prestación de servicios que todavía no están puestos por escrito.',
         'Contratos ya firmados que generan dudas sobre su interpretación o alcance.',
@@ -868,7 +868,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['formalizar un proyecto', 'emprendimiento', 'startup', 'proyecto'],
     contenido: {
       problema:
-        'Muchos proyectos y emprendimientos operan durante un tiempo de manera informal — darles un marco legal desde el inicio, o al momento de crecer, ordena la relación entre quienes participan y reduce riesgos a futuro.',
+        'Muchos proyectos y emprendimientos operan de manera informal durante un tiempo; darles un marco legal —una sociedad, un contrato entre las partes u otra estructura— ordena la relación entre quienes participan y reduce riesgos. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, define junto con cada proyecto la estructura más adecuada.',
       situaciones: [
         'Emprendimientos que empiezan a operar y necesitan definir su estructura legal.',
         'Proyectos con más de una persona involucrada que todavía no formalizaron su relación.',
@@ -918,7 +918,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['asesoramiento empresas', 'asesoramiento legal empresarial', 'pyme'],
     contenido: {
       problema:
-        'Las empresas enfrentan de manera constante decisiones con impacto legal — desde su operación diaria hasta su relación con clientes, proveedores y organismos públicos — que conviene resolver con acompañamiento jurídico continuo, no solo frente a un conflicto puntual.',
+        'Las empresas enfrentan de manera constante decisiones con impacto legal, desde su operación diaria hasta la relación con clientes y proveedores, que conviene resolver con acompañamiento jurídico continuo, no solo ante un conflicto puntual. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, brinda ese asesoramiento de forma continua o puntual.',
       situaciones: [
         'Empresas que necesitan asesoramiento legal continuo para su operación diaria.',
         'Dudas puntuales sobre la legalidad de una decisión comercial o societaria.',
@@ -968,7 +968,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     keywords: ['daños y perjuicios', 'siniestro', 'responsabilidad civil', 'indemnización'],
     contenido: {
       problema:
-        'Un siniestro o un hecho dañoso —un accidente, un daño a la propiedad, una negligencia de un tercero— genera consecuencias que muchas veces no son reconocidas espontáneamente por el responsable ni por su seguro, y requieren un reclamo formal para ser reparadas.',
+        'Un siniestro o un hecho dañoso —un accidente, un daño a la propiedad, la negligencia de un tercero— genera consecuencias que muchas veces no son reconocidas espontáneamente por el responsable ni por su seguro. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, evalúa el hecho y lleva adelante el reclamo.',
       situaciones: [
         'Siniestros con daños materiales o lesiones a las personas.',
         'Responsabilidad civil de un tercero por un hecho dañoso.',
@@ -1032,7 +1032,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsablePendiente: true,
     contenido: {
       problema:
-        'Cerrar un vínculo laboral de manera prolija —ya sea con un empleado de una empresa o con personal de casas particulares— reduce el riesgo de reclamos posteriores y ordena la salida para ambas partes.',
+        'Cerrar un vínculo laboral de forma prolija, ya sea con un empleado de una empresa o con personal de casas particulares, reduce el riesgo de reclamos posteriores y ordena la salida para ambas partes. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, calcula la liquidación y redacta el acuerdo correspondiente.',
       situaciones: [
         'Empleadores que necesitan desvincular a un empleado y buscan hacerlo de manera ordenada.',
         'Cierre del vínculo con personal de casas particulares (empleadas/os domésticos, cuidadores).',
@@ -1083,7 +1083,7 @@ export const TEMAS_WHATSAPP: TemaWhatsApp[] = [
     responsablePendiente: true,
     contenido: {
       problema:
-        'Es habitual encontrarse con un inmueble que se posee y ocupa desde hace años, de forma pacífica y continua, pero cuyo dominio no está inscripto a nombre de quien realmente lo tiene. Sin ese título, no se puede vender, hipotecar ni dejar en herencia con seguridad jurídica.',
+        'Una usucapión es la vía judicial para que quien posee un inmueble de forma pacífica y continua, durante el tiempo que exige la ley, obtenga el reconocimiento de su dominio y lo inscriba a su nombre. Estudio Jurídico APP, con sede en Ciudad Autónoma de Buenos Aires, lleva el proceso hasta la inscripción definitiva.',
       situaciones: [
         'Posesión prolongada y pacífica de un inmueble sin escritura a nombre del poseedor.',
         'Título de propiedad extraviado, inexistente o a nombre de una persona que ya no tiene relación con el inmueble.',
