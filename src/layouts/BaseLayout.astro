@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppPicker from '../components/WhatsAppPicker.astro';
+import { SOCIOS, EMAIL_ESTUDIO } from '../lib/whatsapp';
 import '../styles/global.css';
 
 interface Props {
@@ -19,6 +20,36 @@ const siteUrl = 'https://www.estudiojapp.com.ar';
 const canonical = `${siteUrl}${path}`;
 const fullTitle = `${title} | Estudio Jurídico APP`;
 const waMode = path === '/' ? 'personas' : 'temas';
+
+/**
+ * Schema.org LegalService, repetido en todas las páginas (patrón estándar para identificar
+ * "quién está detrás del sitio" ante buscadores y asistentes de IA — no es contenido duplicado
+ * a efectos de SEO). legalName usa el "&" tal como está publicado hoy en el sitio (Footer,
+ * Home, /equipo/) — pendiente de confirmar contra la razón social real si difiere.
+ */
+const legalServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Estudio Jurídico APP',
+  legalName: 'Abogados Paoletti & Palau',
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/logo.png`,
+  email: EMAIL_ESTUDIO,
+  telephone: `+${SOCIOS.gisele.numeroWa}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Buenos Aires',
+    addressCountry: 'AR',
+  },
+  areaServed: 'AR',
+  sameAs: ['https://www.instagram.com/estudiojapp/'],
+  founder: (Object.keys(SOCIOS) as (keyof typeof SOCIOS)[]).map((key) => ({
+    '@type': 'Person',
+    name: SOCIOS[key].nombre,
+    jobTitle: SOCIOS[key].rol,
+  })),
+};
 ---
 
 <!doctype html>
@@ -60,6 +91,7 @@ const waMode = path === '/' ? 'personas' : 'temas';
     <script is:inline src="/analytics.js" defer></script>
 
     <script is:inline src="/area-search.js" defer></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(legalServiceSchema)} />
     <slot name="head" />
   </head>
   <body id="top">

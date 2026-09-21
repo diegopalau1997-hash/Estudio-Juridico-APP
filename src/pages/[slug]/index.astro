@@ -32,10 +32,31 @@ const faqSchema = c
       })),
     }
   : null;
+
+/**
+ * JSON-LD Service (no Article): esta página describe un servicio del estudio, no es una nota
+ * o artículo editorial. Article está pensado para contenido periodístico/blog — usarlo acá
+ * sería un mal uso del tipo ante Google. Service es el tipo correcto para una página que
+ * describe una prestación profesional ofrecida por una LegalService.
+ */
+const siteUrl = 'https://www.estudiojapp.com.ar';
+const serviceSchema = c
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      serviceType: tema.etiqueta,
+      name: tema.etiqueta,
+      description: c.problema,
+      url: `${siteUrl}/${tema.slug}/`,
+      provider: { '@type': 'LegalService', name: 'Estudio Jurídico APP', url: siteUrl },
+      areaServed: 'AR',
+    }
+  : null;
 ---
 
 <BaseLayout title={tema.etiqueta} description={tema.resumenBreve} path={`/${tema.slug}/`} keywords={tema.keywords}>
   {faqSchema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+  {serviceSchema && <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />}
   <section class="section area">
     <div class="container">
       <nav class="breadcrumb" aria-label="Miga de pan">

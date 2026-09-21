@@ -2,9 +2,38 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import WhatsAppButton from '../../components/WhatsAppButton.astro';
-import { SOCIOS, mensajePersona } from '../../lib/whatsapp';
+import { SOCIOS, TEMAS_WHATSAPP, mensajePersona, type Responsable } from '../../lib/whatsapp';
 import giselePhoto from '../../assets/equipo/gisele-paoletti.png';
 import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
+
+const siteUrl = 'https://www.estudiojapp.com.ar';
+
+/** Schema.org Person por socio: matrícula como credencial habilitante, áreas de práctica
+    reales (derivadas de TEMAS_WHATSAPP, no listadas a mano) como knowsAbout. */
+function personSchema(key: Responsable) {
+  const socio = SOCIOS[key];
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: socio.nombre,
+    jobTitle: socio.rol,
+    email: socio.email,
+    telephone: `+${socio.numeroWa}`,
+    worksFor: { '@type': 'LegalService', name: 'Estudio Jurídico APP', url: siteUrl },
+    ...(socio.matricula && {
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'license',
+        name: socio.matricula,
+      },
+    }),
+    // Solo áreas con responsable ya confirmado — responsablePendiente son asignaciones
+    // provisorias, no corresponde afirmarlas como dato estructurado público todavía.
+    knowsAbout: TEMAS_WHATSAPP.filter((t) => t.responsable === key && !t.responsablePendiente).map((t) => t.etiqueta),
+  };
+}
+const giseleSchema = personSchema('gisele');
+const diegoSchema = personSchema('diego');
 ---
 
 <BaseLayout
@@ -12,6 +41,8 @@ import diegoPhoto from '../../assets/equipo/diego-palau.jpeg';
   description="Gisele Paoletti y Diego Palau, socios de Estudio Jurídico APP."
   path="/equipo/"
 >
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(giseleSchema)} />
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(diegoSchema)} />
   <section class="section">
     <div class="container">
       <span class="eyebrow">Equipo</span>
